@@ -10,6 +10,7 @@ import Foundation
 
 
 public protocol GlidingCollectionDelegate {
+  func glidingCollection(_ collection: GlidingCollection, willExpandItemAt index: Int)
   func glidingCollection(_ collection: GlidingCollection, didExpandItemAt index: Int)
   func glidingCollection(_ collection: GlidingCollection, didSelectItemAt index: Int)
 }
