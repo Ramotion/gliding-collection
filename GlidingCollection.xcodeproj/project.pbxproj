@@ -13,7 +13,64 @@
 		9D56EEB61E6B2D82008C3698 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D56EEB41E6B2D82008C3698 /* Main.storyboard */; };
 		9D56EEB81E6B2D82008C3698 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D56EEB71E6B2D82008C3698 /* Assets.xcassets */; };
 		9D56EEBB1E6B2D82008C3698 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D56EEB91E6B2D82008C3698 /* LaunchScreen.storyboard */; };
+		9DD0DCF11E766EF0003E224C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD0DCCE1E766EF0003E224C /* CollectionCell.swift */; };
+		9DD0DCF21E766EF0003E224C /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCCF1E766EF0003E224C /* CollectionCell.xib */; };
+		9DD0DCF31E766EF0003E224C /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD0DCD11E766EF0003E224C /* FileManager.swift */; };
+		9DD0DCF41E766EF0003E224C /* denims_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCD41E766EF0003E224C /* denims_1.jpg */; };
+		9DD0DCF51E766EF0003E224C /* denims_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCD51E766EF0003E224C /* denims_2.jpg */; };
+		9DD0DCF61E766EF0003E224C /* denims_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCD61E766EF0003E224C /* denims_3.jpg */; };
+		9DD0DCF71E766EF0003E224C /* denims_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCD71E766EF0003E224C /* denims_4.jpg */; };
+		9DD0DCF81E766EF0003E224C /* pants_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCD91E766EF0003E224C /* pants_1.jpeg */; };
+		9DD0DCF91E766EF0003E224C /* pants_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCDA1E766EF0003E224C /* pants_2.jpg */; };
+		9DD0DCFA1E766EF0003E224C /* pants_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCDB1E766EF0003E224C /* pants_3.jpg */; };
+		9DD0DCFB1E766EF0003E224C /* pants_4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCDC1E766EF0003E224C /* pants_4.jpeg */; };
+		9DD0DCFC1E766EF0003E224C /* pants_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCDD1E766EF0003E224C /* pants_5.jpg */; };
+		9DD0DCFD1E766EF0003E224C /* polos_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCDF1E766EF0003E224C /* polos_1.jpeg */; };
+		9DD0DCFE1E766EF0003E224C /* polos_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCE01E766EF0003E224C /* polos_2.jpeg */; };
+		9DD0DCFF1E766EF0003E224C /* polos_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCE11E766EF0003E224C /* polos_3.jpg */; };
+		9DD0DD001E766EF0003E224C /* polos_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCE21E766EF0003E224C /* polos_4.jpg */; };
+		9DD0DD011E766EF0003E224C /* shirts_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCE41E766EF0003E224C /* shirts_1.jpg */; };
+		9DD0DD021E766EF0003E224C /* shirts_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCE51E766EF0003E224C /* shirts_2.jpg */; };
+		9DD0DD031E766EF0003E224C /* shirts_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCE61E766EF0003E224C /* shirts_3.jpg */; };
+		9DD0DD041E766EF0003E224C /* shirts_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCE71E766EF0003E224C /* shirts_4.jpg */; };
+		9DD0DD051E766EF0003E224C /* track wear_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCE91E766EF0003E224C /* track wear_1.jpg */; };
+		9DD0DD061E766EF0003E224C /* track wear_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCEA1E766EF0003E224C /* track wear_2.jpg */; };
+		9DD0DD071E766EF0003E224C /* track wear_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCEB1E766EF0003E224C /* track wear_3.jpg */; };
+		9DD0DD091E766EF0003E224C /* vests_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCEE1E766EF0003E224C /* vests_1.jpg */; };
+		9DD0DD0A1E766EF0003E224C /* vests_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCEF1E766EF0003E224C /* vests_2.jpeg */; };
+		9DD0DD141E766F25003E224C /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD0DD0D1E766F25003E224C /* Collection.swift */; };
+		9DD0DD151E766F25003E224C /* GlidingCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD0DD0E1E766F25003E224C /* GlidingCollection.swift */; };
+		9DD0DD161E766F25003E224C /* GlidingConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD0DD0F1E766F25003E224C /* GlidingConfig.swift */; };
+		9DD0DD171E766F25003E224C /* GlidingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD0DD101E766F25003E224C /* GlidingLayout.swift */; };
+		9DD0DD181E766F25003E224C /* GlidingCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD0DD121E766F25003E224C /* GlidingCollectionDataSource.swift */; };
+		9DD0DD191E766F25003E224C /* GlidingCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD0DD131E766F25003E224C /* GlidingCollectionDelegate.swift */; };
+		9DD0DD1A1E767881003E224C /* GlidingCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D56EE9F1E6B2D5E008C3698 /* GlidingCollection.framework */; };
+		9DD0DD1B1E767881003E224C /* GlidingCollection.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9D56EE9F1E6B2D5E008C3698 /* GlidingCollection.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9DD0DD1C1E767881003E224C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D56EE961E6B2D5E008C3698 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D56EE9E1E6B2D5E008C3698;
+			remoteInfo = GlidingCollection;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9DD0DD1E1E767881003E224C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9DD0DD1B1E767881003E224C /* GlidingCollection.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9D56EE9F1E6B2D5E008C3698 /* GlidingCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GlidingCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,6 +83,37 @@
 		9D56EEB71E6B2D82008C3698 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D56EEBA1E6B2D82008C3698 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D56EEBC1E6B2D82008C3698 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DD0DCCE1E766EF0003E224C /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		9DD0DCCF1E766EF0003E224C /* CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
+		9DD0DCD11E766EF0003E224C /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		9DD0DCD41E766EF0003E224C /* denims_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = denims_1.jpg; sourceTree = "<group>"; };
+		9DD0DCD51E766EF0003E224C /* denims_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = denims_2.jpg; sourceTree = "<group>"; };
+		9DD0DCD61E766EF0003E224C /* denims_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = denims_3.jpg; sourceTree = "<group>"; };
+		9DD0DCD71E766EF0003E224C /* denims_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = denims_4.jpg; sourceTree = "<group>"; };
+		9DD0DCD91E766EF0003E224C /* pants_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pants_1.jpeg; sourceTree = "<group>"; };
+		9DD0DCDA1E766EF0003E224C /* pants_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pants_2.jpg; sourceTree = "<group>"; };
+		9DD0DCDB1E766EF0003E224C /* pants_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pants_3.jpg; sourceTree = "<group>"; };
+		9DD0DCDC1E766EF0003E224C /* pants_4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pants_4.jpeg; sourceTree = "<group>"; };
+		9DD0DCDD1E766EF0003E224C /* pants_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pants_5.jpg; sourceTree = "<group>"; };
+		9DD0DCDF1E766EF0003E224C /* polos_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polos_1.jpeg; sourceTree = "<group>"; };
+		9DD0DCE01E766EF0003E224C /* polos_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polos_2.jpeg; sourceTree = "<group>"; };
+		9DD0DCE11E766EF0003E224C /* polos_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polos_3.jpg; sourceTree = "<group>"; };
+		9DD0DCE21E766EF0003E224C /* polos_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polos_4.jpg; sourceTree = "<group>"; };
+		9DD0DCE41E766EF0003E224C /* shirts_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shirts_1.jpg; sourceTree = "<group>"; };
+		9DD0DCE51E766EF0003E224C /* shirts_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shirts_2.jpg; sourceTree = "<group>"; };
+		9DD0DCE61E766EF0003E224C /* shirts_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shirts_3.jpg; sourceTree = "<group>"; };
+		9DD0DCE71E766EF0003E224C /* shirts_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shirts_4.jpg; sourceTree = "<group>"; };
+		9DD0DCE91E766EF0003E224C /* track wear_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "track wear_1.jpg"; sourceTree = "<group>"; };
+		9DD0DCEA1E766EF0003E224C /* track wear_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "track wear_2.jpg"; sourceTree = "<group>"; };
+		9DD0DCEB1E766EF0003E224C /* track wear_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "track wear_3.jpg"; sourceTree = "<group>"; };
+		9DD0DCEE1E766EF0003E224C /* vests_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vests_1.jpg; sourceTree = "<group>"; };
+		9DD0DCEF1E766EF0003E224C /* vests_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vests_2.jpeg; sourceTree = "<group>"; };
+		9DD0DD0D1E766F25003E224C /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		9DD0DD0E1E766F25003E224C /* GlidingCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlidingCollection.swift; sourceTree = "<group>"; };
+		9DD0DD0F1E766F25003E224C /* GlidingConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlidingConfig.swift; sourceTree = "<group>"; };
+		9DD0DD101E766F25003E224C /* GlidingLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlidingLayout.swift; sourceTree = "<group>"; };
+		9DD0DD121E766F25003E224C /* GlidingCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlidingCollectionDataSource.swift; sourceTree = "<group>"; };
+		9DD0DD131E766F25003E224C /* GlidingCollectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlidingCollectionDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DD0DD1A1E767881003E224C /* GlidingCollection.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +156,11 @@
 		9D56EEA11E6B2D5E008C3698 /* GlidingCollection */ = {
 			isa = PBXGroup;
 			children = (
+				9DD0DD0E1E766F25003E224C /* GlidingCollection.swift */,
+				9DD0DD0F1E766F25003E224C /* GlidingConfig.swift */,
+				9DD0DD101E766F25003E224C /* GlidingLayout.swift */,
+				9DD0DD0C1E766F25003E224C /* Extensions */,
+				9DD0DD111E766F25003E224C /* Protocols */,
 				9D56EEC11E6B2E90008C3698 /* Resources */,
 			);
 			path = GlidingCollection;
@@ -77,6 +171,9 @@
 			children = (
 				9D56EEB01E6B2D82008C3698 /* AppDelegate.swift */,
 				9D56EEB21E6B2D82008C3698 /* ViewController.swift */,
+				9DD0DCCD1E766EF0003E224C /* CollectionCell */,
+				9DD0DCD01E766EF0003E224C /* Extensions */,
+				9DD0DCD21E766EF0003E224C /* Images */,
 				9D56EEC01E6B2E88008C3698 /* Resources */,
 			);
 			path = GlidingCollectionDemo;
@@ -85,12 +182,12 @@
 		9D56EEC01E6B2E88008C3698 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9D56EEB41E6B2D82008C3698 /* Main.storyboard */,
 				9D56EEB71E6B2D82008C3698 /* Assets.xcassets */,
-				9D56EEB91E6B2D82008C3698 /* LaunchScreen.storyboard */,
 				9D56EEBC1E6B2D82008C3698 /* Info.plist */,
+				9D56EEB91E6B2D82008C3698 /* LaunchScreen.storyboard */,
+				9D56EEB41E6B2D82008C3698 /* Main.storyboard */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		9D56EEC11E6B2E90008C3698 /* Resources */ = {
@@ -99,7 +196,118 @@
 				9D56EEA21E6B2D5E008C3698 /* GlidingCollection.h */,
 				9D56EEA31E6B2D5E008C3698 /* Info.plist */,
 			);
-			name = Resources;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9DD0DCCD1E766EF0003E224C /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DCCE1E766EF0003E224C /* CollectionCell.swift */,
+				9DD0DCCF1E766EF0003E224C /* CollectionCell.xib */,
+			);
+			path = CollectionCell;
+			sourceTree = "<group>";
+		};
+		9DD0DCD01E766EF0003E224C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DCD11E766EF0003E224C /* FileManager.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9DD0DCD21E766EF0003E224C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DCD31E766EF0003E224C /* denims */,
+				9DD0DCD81E766EF0003E224C /* pants */,
+				9DD0DCDE1E766EF0003E224C /* polos */,
+				9DD0DCE31E766EF0003E224C /* shirts */,
+				9DD0DCE81E766EF0003E224C /* track-wear */,
+				9DD0DCED1E766EF0003E224C /* vests */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		9DD0DCD31E766EF0003E224C /* denims */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DCD41E766EF0003E224C /* denims_1.jpg */,
+				9DD0DCD51E766EF0003E224C /* denims_2.jpg */,
+				9DD0DCD61E766EF0003E224C /* denims_3.jpg */,
+				9DD0DCD71E766EF0003E224C /* denims_4.jpg */,
+			);
+			path = denims;
+			sourceTree = "<group>";
+		};
+		9DD0DCD81E766EF0003E224C /* pants */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DCD91E766EF0003E224C /* pants_1.jpeg */,
+				9DD0DCDA1E766EF0003E224C /* pants_2.jpg */,
+				9DD0DCDB1E766EF0003E224C /* pants_3.jpg */,
+				9DD0DCDC1E766EF0003E224C /* pants_4.jpeg */,
+				9DD0DCDD1E766EF0003E224C /* pants_5.jpg */,
+			);
+			path = pants;
+			sourceTree = "<group>";
+		};
+		9DD0DCDE1E766EF0003E224C /* polos */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DCDF1E766EF0003E224C /* polos_1.jpeg */,
+				9DD0DCE01E766EF0003E224C /* polos_2.jpeg */,
+				9DD0DCE11E766EF0003E224C /* polos_3.jpg */,
+				9DD0DCE21E766EF0003E224C /* polos_4.jpg */,
+			);
+			path = polos;
+			sourceTree = "<group>";
+		};
+		9DD0DCE31E766EF0003E224C /* shirts */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DCE41E766EF0003E224C /* shirts_1.jpg */,
+				9DD0DCE51E766EF0003E224C /* shirts_2.jpg */,
+				9DD0DCE61E766EF0003E224C /* shirts_3.jpg */,
+				9DD0DCE71E766EF0003E224C /* shirts_4.jpg */,
+			);
+			path = shirts;
+			sourceTree = "<group>";
+		};
+		9DD0DCE81E766EF0003E224C /* track-wear */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DCE91E766EF0003E224C /* track wear_1.jpg */,
+				9DD0DCEA1E766EF0003E224C /* track wear_2.jpg */,
+				9DD0DCEB1E766EF0003E224C /* track wear_3.jpg */,
+			);
+			path = "track-wear";
+			sourceTree = "<group>";
+		};
+		9DD0DCED1E766EF0003E224C /* vests */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DCEE1E766EF0003E224C /* vests_1.jpg */,
+				9DD0DCEF1E766EF0003E224C /* vests_2.jpeg */,
+			);
+			path = vests;
+			sourceTree = "<group>";
+		};
+		9DD0DD0C1E766F25003E224C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DD0D1E766F25003E224C /* Collection.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9DD0DD111E766F25003E224C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9DD0DD121E766F25003E224C /* GlidingCollectionDataSource.swift */,
+				9DD0DD131E766F25003E224C /* GlidingCollectionDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +349,12 @@
 				9D56EEAA1E6B2D82008C3698 /* Sources */,
 				9D56EEAB1E6B2D82008C3698 /* Frameworks */,
 				9D56EEAC1E6B2D82008C3698 /* Resources */,
+				9DD0DD1E1E767881003E224C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9DD0DD1D1E767881003E224C /* PBXTargetDependency */,
 			);
 			name = GlidingCollectionDemo;
 			productName = GlidingCollectionDemo;
@@ -163,12 +373,13 @@
 				TargetAttributes = {
 					9D56EE9E1E6B2D5E008C3698 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 486STKKP6Y;
+						DevelopmentTeam = 2VFCBFYPFW;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					9D56EEAD1E6B2D82008C3698 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 486STKKP6Y;
+						DevelopmentTeam = 2VFCBFYPFW;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -204,9 +415,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DD0DCFA1E766EF0003E224C /* pants_3.jpg in Resources */,
+				9DD0DD061E766EF0003E224C /* track wear_2.jpg in Resources */,
+				9DD0DCF51E766EF0003E224C /* denims_2.jpg in Resources */,
 				9D56EEBB1E6B2D82008C3698 /* LaunchScreen.storyboard in Resources */,
+				9DD0DD051E766EF0003E224C /* track wear_1.jpg in Resources */,
+				9DD0DD091E766EF0003E224C /* vests_1.jpg in Resources */,
+				9DD0DD071E766EF0003E224C /* track wear_3.jpg in Resources */,
+				9DD0DCFD1E766EF0003E224C /* polos_1.jpeg in Resources */,
+				9DD0DD011E766EF0003E224C /* shirts_1.jpg in Resources */,
 				9D56EEB81E6B2D82008C3698 /* Assets.xcassets in Resources */,
+				9DD0DD0A1E766EF0003E224C /* vests_2.jpeg in Resources */,
+				9DD0DCF41E766EF0003E224C /* denims_1.jpg in Resources */,
+				9DD0DD041E766EF0003E224C /* shirts_4.jpg in Resources */,
+				9DD0DCFB1E766EF0003E224C /* pants_4.jpeg in Resources */,
 				9D56EEB61E6B2D82008C3698 /* Main.storyboard in Resources */,
+				9DD0DD021E766EF0003E224C /* shirts_2.jpg in Resources */,
+				9DD0DD031E766EF0003E224C /* shirts_3.jpg in Resources */,
+				9DD0DCF91E766EF0003E224C /* pants_2.jpg in Resources */,
+				9DD0DCFF1E766EF0003E224C /* polos_3.jpg in Resources */,
+				9DD0DCFC1E766EF0003E224C /* pants_5.jpg in Resources */,
+				9DD0DCF81E766EF0003E224C /* pants_1.jpeg in Resources */,
+				9DD0DCFE1E766EF0003E224C /* polos_2.jpeg in Resources */,
+				9DD0DCF61E766EF0003E224C /* denims_3.jpg in Resources */,
+				9DD0DCF71E766EF0003E224C /* denims_4.jpg in Resources */,
+				9DD0DCF21E766EF0003E224C /* CollectionCell.xib in Resources */,
+				9DD0DD001E766EF0003E224C /* polos_4.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +451,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DD0DD161E766F25003E224C /* GlidingConfig.swift in Sources */,
+				9DD0DD151E766F25003E224C /* GlidingCollection.swift in Sources */,
+				9DD0DD171E766F25003E224C /* GlidingLayout.swift in Sources */,
+				9DD0DD141E766F25003E224C /* Collection.swift in Sources */,
+				9DD0DD181E766F25003E224C /* GlidingCollectionDataSource.swift in Sources */,
+				9DD0DD191E766F25003E224C /* GlidingCollectionDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,10 +466,20 @@
 			files = (
 				9D56EEB31E6B2D82008C3698 /* ViewController.swift in Sources */,
 				9D56EEB11E6B2D82008C3698 /* AppDelegate.swift in Sources */,
+				9DD0DCF11E766EF0003E224C /* CollectionCell.swift in Sources */,
+				9DD0DCF31E766EF0003E224C /* FileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9DD0DD1D1E767881003E224C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9D56EE9E1E6B2D5E008C3698 /* GlidingCollection */;
+			targetProxy = 9DD0DD1C1E767881003E224C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9D56EEB41E6B2D82008C3698 /* Main.storyboard */ = {
@@ -238,6 +488,7 @@
 				9D56EEB51E6B2D82008C3698 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		9D56EEB91E6B2D82008C3698 /* LaunchScreen.storyboard */ = {
@@ -246,6 +497,7 @@
 				9D56EEBA1E6B2D82008C3698 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -353,19 +605,21 @@
 		9D56EEA81E6B2D5E008C3698 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 486STKKP6Y;
+				DEVELOPMENT_TEAM = 2VFCBFYPFW;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = GlidingCollection/Info.plist;
+				INFOPLIST_FILE = GlidingCollection/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramotion.glidingCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -373,13 +627,14 @@
 		9D56EEA91E6B2D5E008C3698 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 486STKKP6Y;
+				DEVELOPMENT_TEAM = 2VFCBFYPFW;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = GlidingCollection/Info.plist;
+				INFOPLIST_FILE = GlidingCollection/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -393,30 +648,32 @@
 		9D56EEBE1E6B2D82008C3698 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 486STKKP6Y;
-				INFOPLIST_FILE = GlidingCollectionDemo/Info.plist;
+				DEVELOPMENT_TEAM = 2VFCBFYPFW;
+				INFOPLIST_FILE = GlidingCollectionDemo/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramotion.glidingCollectionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		9D56EEBF1E6B2D82008C3698 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 486STKKP6Y;
-				INFOPLIST_FILE = GlidingCollectionDemo/Info.plist;
+				DEVELOPMENT_TEAM = 2VFCBFYPFW;
+				INFOPLIST_FILE = GlidingCollectionDemo/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramotion.glidingCollectionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -439,6 +696,7 @@
 				9D56EEA91E6B2D5E008C3698 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D56EEBD1E6B2D82008C3698 /* Build configuration list for PBXNativeTarget "GlidingCollectionDemo" */ = {
 			isa = XCConfigurationList;
@@ -447,6 +705,7 @@
 				9D56EEBF1E6B2D82008C3698 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
