@@ -27,11 +27,11 @@ class ViewController: UIViewController {
 extension ViewController {
   
   func setup() {
-    setupGligingCollectionView()
+    setupGlidingCollectionView()
     loadImages()
   }
   
-  private func setupGligingCollectionView() {
+  private func setupGlidingCollectionView() {
     glidingView = GlidingCollection()
     glidingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     glidingView.frame = view.bounds
