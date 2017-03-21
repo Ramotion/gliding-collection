@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol GlidingLayoutDelegate {
+  func collectionViewDidScroll()
+}
+
 
 public class GlidingLayout: UICollectionViewFlowLayout {
+  
+  var delegate: GlidingLayoutDelegate?
   
   public override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
     

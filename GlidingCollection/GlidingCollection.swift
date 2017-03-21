@@ -126,6 +126,7 @@ fileprivate extension GlidingCollection {
     let insets = config.sideInsets
     let rightInset = UIScreen.main.bounds.width - config.cardsSize.width
     layout.sectionInset = UIEdgeInsets(top: 0, left: insets.left, bottom: 0, right: rightInset)
+    layout.delegate = self
     
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     
@@ -278,6 +279,7 @@ extension GlidingCollection {
     }
     collectionView.reloadData()
     collectionView.layoutIfNeeded()
+    hideNewCell(hide: false)
     
     paths = self.collectionView.indexPathsForVisibleItems.sorted {
       $0.item < $1.item
@@ -528,7 +530,7 @@ extension GlidingCollection: CAAnimationDelegate {
     let timeOffset = layer.convertTime(time, from: nil)
     layer.timeOffset = timeOffset
     layer.beginTime = CACurrentMediaTime()
-    layer.speed = reverse ? -2.0 : 2.0
+    layer.speed = reverse ? -2.0 : 3.0
   }
   
   @discardableResult
@@ -578,6 +580,12 @@ extension GlidingCollection: CAAnimationDelegate {
       case .newRightSide where index == expandedItemIndex && anilayer.animation.beginTime == anim.beginTime:
         resetViews()
         animationInProcess = false
+        hideNewCell(hide: false)
+      case .newCell where index == expandedItemIndex && anilayer.animation.beginTime == anim.beginTime:
+        
+        collectionView.alpha = 1
+        anilayer.layer.removeFromSuperlayer()
+        hideNewCell(hide: true)
       default: break
       }
     }
@@ -625,6 +633,26 @@ extension GlidingCollection: CAAnimationDelegate {
       self.topHalfSnapshot?.removeFromSuperview()
       self.bottomHalfSnapshot?.removeFromSuperview()
     })
+  }
+  
+  fileprivate func hideNewCell(hide: Bool) {
+    let path = IndexPath(item: 1, section: 0)
+    let newAlpha: CGFloat = hide ? 0 : 1
+    if let cell = collectionView.cellForItem(at: path), cell.alpha != newAlpha {
+      cell.alpha = newAlpha
+    }
+  }
+  
+}
+
+// MARK: - GlidingLayoutDelegate
+extension GlidingCollection: GlidingLayoutDelegate {
+  
+  func collectionViewDidScroll() {
+    guard animationInProcess else { return }
+    if let layer = self.newRightSideLayer {
+      speedUp(layer, reverse: false)
+    }
   }
   
 }
