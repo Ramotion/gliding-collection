@@ -312,8 +312,8 @@ extension GlidingCollection {
       }
       newRightSideSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
-      addSubview(newRightSideSnapshotView)
-      newRightSideSnapshotView.frame = CGRect(x: bounds.maxX, y: cellFrame.minY, width: cell.bounds.width, height: cell.bounds.height)
+      collectionView.addSubview(newRightSideSnapshotView)
+      newRightSideSnapshotView.frame = CGRect(x: bounds.maxX, y: 0, width: cell.bounds.width, height: cell.bounds.height)
     }
     
     collectionView.alpha = 0
@@ -384,10 +384,10 @@ extension GlidingCollection {
     animate(newCellSnapshotLayer, newValue: newCellSnapshotNewBoundsValue, item: .newCell, delay: newCellAnimationDelay, index: index)
     
     // MARK: Animate new right side
-    let position = CGPoint(x: cellFrame.maxX + space, y: cellFrame.minY)
+    let position = CGPoint(x: cellFrame.maxX + space, y: 0)
     let newRightSideLayer = newRightSideSnapshotView.layer
     newRightSideLayer.anchorPoint = .zero
-    newRightSideLayer.position = CGPoint(x: bounds.width, y: cellFrame.minY)
+    newRightSideLayer.position = CGPoint(x: bounds.width, y: 0)
     let newRightSideNewValue = AnimationValue.position(position)
     let newRightSideDelay = duration + newCellAnimationDelay
     animate(newRightSideLayer, newValue: newRightSideNewValue, item: .newRightSide, duration: config.animationDuration, delay: newRightSideDelay * 1.5, index: index)
@@ -578,9 +578,9 @@ extension GlidingCollection: CAAnimationDelegate {
       
       switch item {
       case .newRightSide where index == expandedItemIndex && anilayer.animation.beginTime == anim.beginTime:
+        self.hideNewCell(hide: false)
         resetViews()
         animationInProcess = false
-        hideNewCell(hide: false)
       case .newCell where index == expandedItemIndex && anilayer.animation.beginTime == anim.beginTime:
         
         collectionView.alpha = 1
