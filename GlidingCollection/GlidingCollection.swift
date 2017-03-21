@@ -124,7 +124,7 @@ fileprivate extension GlidingCollection {
     layout.minimumLineSpacing = config.cardsSpacing
     layout.scrollDirection = .horizontal
     let insets = config.sideInsets
-    let rightInset = UIScreen.main.bounds.width - config.cardsSize.width - config.cardsSpacing
+    let rightInset = UIScreen.main.bounds.width - config.cardsSize.width
     layout.sectionInset = UIEdgeInsets(top: 0, left: insets.left, bottom: 0, right: rightInset)
     
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -214,8 +214,8 @@ extension GlidingCollection {
     if animationInProcess {
       delay = duration / 3.5
       if let layer = self.newRightSideLayer {
-        layer.position = CGPoint(x: cellFrame.maxX + space, y: cellFrame.minY)
-        animate(layer, newValue: oldRightSideNewValue, item: AnimationItem.newRightSide, duration: duration, delay: 0, index: expandedItemIndex)
+        layer.position = layer.presentation()?.position ?? CGPoint(x: cellFrame.maxX + space, y: cellFrame.minY)
+        animate(layer, newValue: oldRightSideNewValue, item: AnimationItem.newRightSide, duration: duration * 1.5, delay: 0, index: expandedItemIndex)
         
         let id = "newCellWrapper,\(expandedItemIndex)"
         if let anilayer = animationLayersDictionary[id] {
@@ -388,7 +388,7 @@ extension GlidingCollection {
     newRightSideLayer.position = CGPoint(x: bounds.width, y: cellFrame.minY)
     let newRightSideNewValue = AnimationValue.position(position)
     let newRightSideDelay = duration + newCellAnimationDelay
-    animate(newRightSideLayer, newValue: newRightSideNewValue, item: .newRightSide, duration: config.animationDuration * 1.5, delay: newRightSideDelay, index: index)
+    animate(newRightSideLayer, newValue: newRightSideNewValue, item: .newRightSide, duration: config.animationDuration, delay: newRightSideDelay * 1.5, index: index)
     self.newRightSideLayer = newRightSideLayer
     
     animationInProcess = true
@@ -485,7 +485,7 @@ extension GlidingCollection {
         gesture.setTranslation(.zero, in: self)
       } else {
         guard gestureTranslation == 0 else { break }
-        if range > 100 || abs(velocity.y) > 200 {
+        if range > 100 || abs(velocity.y) > 300 && abs(velocity.x) < 300 {
           up ? self.expandPrevious() : self.expandNext()
           gesture.isEnabled = false
           gesture.isEnabled = true
