@@ -485,49 +485,32 @@ extension GlidingCollection {
       let numberOfItems = dataSource?.numberOfItems(in: self) ?? 0
       if (expandedItemIndex == 0 && up) || (expandedItemIndex == numberOfItems - 1 && !up), !animationInProcess, !decelerating {
         let y = collectionView.frame.minY
+        
+        // Set initial values
         if gestureTranslation == 0 {
           gestureTranslation = y
           
-          let size = up ? CGSize(width: bounds.width, height: bounds.height) : CGSize(width: bounds.width, height: bounds.height - collectionView.frame.minY)
-          UIGraphicsBeginImageContextWithOptions(size, false, 0)
-          if let context = UIGraphicsGetCurrentContext() {
-            containerView.layer.render(in: context)
+          // Update snapshots if needed
+          if topHalfSnapshot == nil || bottomHalfSnapshot == nil {
+            snapshotTopAndBottom()
           }
-          let snapshot = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
+        }
+        
+        
+        if let snapshot = up ? bottomHalfSnapshot : topHalfSnapshot {
+          if !snapshot.isDescendant(of: containerView) {
+            containerView.addSubview(snapshot)
+          }
+          var frame = snapshot.frame
+          frame.origin.y += translation.y / 4.5
           
-          if up {
-            UIGraphicsEndImageContext()
-            UIGraphicsBeginImageContextWithOptions(size, false, 0)
-            let topButtonFrame = topViews.first?.frame ?? CGRect.zero
-            let topButtonOriginY = topButtonFrame.origin.y
-            bottomHalfSnapshotFrame = CGRect(x: 0, y: topButtonOriginY, width: bounds.width, height: size.height)
-            let point = CGPoint(x: 0, y: -bottomHalfSnapshotFrame.origin.y)
-            snapshot.draw(at: point)
-            bottomHalfSnapshot = UIImageView(image: UIGraphicsGetImageFromCurrentImageContext())
-            bottomHalfSnapshot?.frame = bottomHalfSnapshotFrame
-            containerView.addSubview(bottomHalfSnapshot!)
-            UIGraphicsEndImageContext()
-          } else {
-            topHalfSnapshotFrame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-            topHalfSnapshot = UIImageView(image: snapshot)
-            topHalfSnapshot?.frame = topHalfSnapshotFrame
-            containerView.addSubview(topHalfSnapshot!)
-            UIGraphicsEndImageContext()
+          // Animate frame changing to avoid flickering
+          UIView.animate(withDuration: 0.1) {
+            snapshot.frame = frame
           }
         }
-        
-        if let topSnapshot = topHalfSnapshot {
-          var frame = topSnapshot.frame
-          frame.origin.y += translation.y / 2.5
-          topSnapshot.frame = frame
-        }
-        
-        if let bottomSnapshot = bottomHalfSnapshot {
-          var frame = bottomSnapshot.frame
-          frame.origin.y += translation.y / 2.5
-          bottomSnapshot.frame = frame
-        }
-        
+      
+        // Hide views
         collectionView.isHidden = true
         (bottomViews + topViews).forEach { $0.isHidden = true }
         
@@ -547,8 +530,35 @@ extension GlidingCollection {
     
   }
   
+  fileprivate func snapshotTopAndBottom() {
+    let size = CGSize(width: bounds.width, height: bounds.height)
+    UIGraphicsBeginImageContextWithOptions(size, false, 0)
+    containerView.drawHierarchy(in: bounds, afterScreenUpdates: false)
+    let snapshot = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
+    
+    UIGraphicsEndImageContext()
+    UIGraphicsBeginImageContextWithOptions(size, false, 0)
+    let topButtonFrame = topViews.first?.frame ?? CGRect.zero
+    let topButtonOriginY = topButtonFrame.origin.y
+    bottomHalfSnapshotFrame = CGRect(x: 0, y: topButtonOriginY, width: bounds.width, height: size.height)
+    let point = CGPoint(x: 0, y: -bottomHalfSnapshotFrame.origin.y)
+    snapshot.draw(at: point)
+    bottomHalfSnapshot = UIImageView(image: UIGraphicsGetImageFromCurrentImageContext())
+    bottomHalfSnapshot?.frame = bottomHalfSnapshotFrame
+    UIGraphicsEndImageContext()
+    
+    let topSize = CGSize(width: bounds.width, height: bounds.height - collectionView.frame.minY)
+    UIGraphicsBeginImageContextWithOptions(topSize, false, 0)
+    containerView.drawHierarchy(in: bounds, afterScreenUpdates: false)
+    topHalfSnapshotFrame = CGRect(x: 0, y: 0, width: topSize.width, height: topSize.height)
+    topHalfSnapshot = UIImageView(image: UIGraphicsGetImageFromCurrentImageContext())
+    topHalfSnapshot?.frame = topHalfSnapshotFrame
+    UIGraphicsEndImageContext()
+  }
+  
 }
 
+// MARK: - Animations
 private typealias AniLayer = (layer: CALayer, animation: CAAnimation)
 
 private enum AnimationValue {
@@ -569,7 +579,6 @@ private enum AnimationItem: String {
 }
 
 
-// MARK: - Animations
 extension GlidingCollection: CAAnimationDelegate {
   
   fileprivate func speedUp(_ layer: CALayer, reverse: Bool) {
@@ -628,7 +637,6 @@ extension GlidingCollection: CAAnimationDelegate {
         collectionView.isUserInteractionEnabled = true
         
       case .newCell where index == expandedItemIndex && anilayer.animation.beginTime == anim.beginTime:
-//        collectionView.isUserInteractionEnabled = true
         let paths = collectionView.indexPathsForVisibleItems.sorted { $0.0.item < $0.1.item }
         guard let path = paths.first, let cell = collectionView.cellForItem(at: path) else {
           break
@@ -685,6 +693,8 @@ extension GlidingCollection: CAAnimationDelegate {
       (self.topViews + self.bottomViews).forEach { $0.isHidden = false }
       self.topHalfSnapshot?.removeFromSuperview()
       self.bottomHalfSnapshot?.removeFromSuperview()
+      self.topHalfSnapshot = nil
+      self.bottomHalfSnapshot = nil
     })
   }
   
