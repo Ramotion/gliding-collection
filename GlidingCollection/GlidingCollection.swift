@@ -45,6 +45,8 @@ public class GlidingCollection: UIView {
     case up, down
   }
   fileprivate var lastDirection = Direction.down
+  
+  fileprivate var lastExpandedItemIndex = 0
   fileprivate var animationInProcess = false
   fileprivate var animationLayersDictionary: [String: AniLayer] = [:]
   fileprivate var topOverlayGradient = CAGradientLayer()
@@ -53,6 +55,7 @@ public class GlidingCollection: UIView {
   fileprivate var bottomViews: [UIButton] = []
   
   // MARK: Snapshots
+  fileprivate var newRightSideSnapshot: UIView?
   fileprivate var newRightSideLayer: CALayer?
   fileprivate var topHalfSnapshot: UIView?
   fileprivate var topHalfSnapshotFrame: CGRect = .zero
@@ -101,9 +104,9 @@ extension GlidingCollection: UIGestureRecognizerDelegate {
     bottomOverlayGradient.frame = CGRect(x: 0, y: collectionView.frame.maxY, width: bounds.width, height: bottomOverylayHeight)
   }
   
-  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-    return false
-  }
+//  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//    return true
+//  }
   
 }
 
@@ -175,6 +178,7 @@ fileprivate extension GlidingCollection {
   
   private func setupPanGesture() {
     gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+    gesture.delegate = self
     addGestureRecognizer(gesture)
   }
   
@@ -200,6 +204,8 @@ extension GlidingCollection {
     
     delegate?.glidingCollection(self, willExpandItemAt: index)
     
+    collectionView.isUserInteractionEnabled = false
+    
     let duration: Double = config.animationDuration
     let direction: Direction = index > expandedItemIndex ? .up : .down
     let up = direction == .up
@@ -208,21 +214,30 @@ extension GlidingCollection {
     let space = config.cardsSpacing
     let cellFrame = CGRect(x: minX, y: collectionView.frame.minY, width: config.cardsSize.width, height: config.cardsSize.height)
     
-    let oldRightSideNewPosition = CGPoint(x: bounds.width, y: cellFrame.minY)
-    let oldRightSideNewValue = AnimationValue.position(oldRightSideNewPosition)
-    
+
     var delay: Double = 0
     if animationInProcess {
       delay = duration / 3.5
       if let layer = self.newRightSideLayer {
-        layer.position = layer.presentation()?.position ?? CGPoint(x: cellFrame.maxX + space, y: cellFrame.minY)
-        animate(layer, newValue: oldRightSideNewValue, item: AnimationItem.newRightSide, duration: duration * 1.5, delay: 0, index: expandedItemIndex)
+        layer.removeFromSuperlayer()
+        self.newRightSideLayer = nil
+        newRightSideSnapshot?.removeFromSuperview()
+        newRightSideSnapshot = nil
+//        self.layer.addSublayer(layer)
+//        
+//        var position = layer.presentation()?.position ?? CGPoint(x: cellFrame.maxX + space, y: 0)
+//        position.y = cellFrame.minY
+//        layer.position = position
+//        let oldRightSideNewPosition = CGPoint(x: bounds.width, y: cellFrame.minY)
+//        let oldRightSideNewValue = AnimationValue.position(oldRightSideNewPosition)
+//        animate(layer, newValue: oldRightSideNewValue, item: AnimationItem.oldRightSide, duration: duration * 1.5, delay: 0, index: -1)
         
-        let id = "newCellWrapper,\(expandedItemIndex)"
-        if let anilayer = animationLayersDictionary[id] {
-          anilayer.layer.removeFromSuperlayer()
+        if let aniLayer = getAnilayer(of: AnimationItem.newCellWrapper, at: expandedItemIndex) {
+          aniLayer.layer.removeFromSuperlayer()
         }
       }
+      
+      lastExpandedItemIndex = expandedItemIndex
     }
     
     lastDirection = direction
@@ -247,28 +262,44 @@ extension GlidingCollection {
       $0.item < $1.item
     }
     
+    var cellIndex = 0
+    var oldCellFrame = CGRect.zero
+    for path in paths {
+      guard let cell = collectionView.cellForItem(at: path) else { continue }
+      cell.alpha = 1
+      let offset = collectionView.contentOffset.x
+      var frame = cell.frame
+      frame.origin.x -= offset
+      if frame.minX > 0 {
+        oldCellFrame = frame
+        break
+      }
+      cellIndex += 1
+    }
+    
+    
     // MARK: Snapshot of old cell
-    if let path = paths.first, let cell = collectionView.cellForItem(at: path) {
+    if let path = paths[safe: cellIndex], let cell = collectionView.cellForItem(at: path) {
       UIGraphicsBeginImageContextWithOptions(cell.frame.size, true, 0)
       if let context = UIGraphicsGetCurrentContext() {
         cell.layer.render(in: context)
       }
       oldCellSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
       addSubview(oldCellSnapshotView)
-      oldCellSnapshotView.frame = cellFrame
+      oldCellSnapshotView.frame = oldCellFrame
       UIGraphicsEndImageContext()
     }
     
     // MARK: Snapshot of right side of collectionView
-    if let path = paths[safe: 1], let cell = collectionView.cellForItem(at: path), !animationInProcess {
+    if let path = paths[safe: cellIndex + 1], let cell = collectionView.cellForItem(at: path), !animationInProcess {
       UIGraphicsBeginImageContextWithOptions(cell.bounds.size, true, 0)
       if let context = UIGraphicsGetCurrentContext() {
         cell.layer.render(in: context)
       }
       oldRightSideSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
-      addSubview(oldRightSideSnapshotView)
-      oldRightSideSnapshotView.frame = CGRect(x: cellFrame.maxX + space, y: cellFrame.minY, width: cell.bounds.width, height: cell.bounds.height)
+      collectionView.addSubview(oldRightSideSnapshotView)
+      oldRightSideSnapshotView.frame = CGRect(x: oldCellFrame.maxX + space, y: 0, width: cellFrame.width, height: cellFrame.height)
     }
     
     
@@ -279,11 +310,12 @@ extension GlidingCollection {
     }
     collectionView.reloadData()
     collectionView.layoutIfNeeded()
-    hideNewCell(hide: false)
     
     paths = self.collectionView.indexPathsForVisibleItems.sorted {
       $0.item < $1.item
     }
+    
+    collectionView.visibleCells.forEach { $0.alpha = 1 }
     
     // MARK: Snapshot of new cell
     if let path = paths.first, let cell = collectionView.cellForItem(at: path) {
@@ -306,6 +338,7 @@ extension GlidingCollection {
     
     // MARK: Snapshot of right side of collectionView
     if let path = paths[safe: 1], let cell = collectionView.cellForItem(at: path) {
+      self.newRightSideLayer?.removeFromSuperlayer()
       UIGraphicsBeginImageContextWithOptions(cell.bounds.size, true, 0)
       if let context = UIGraphicsGetCurrentContext() {
         cell.layer.render(in: context)
@@ -314,9 +347,10 @@ extension GlidingCollection {
       UIGraphicsEndImageContext()
       collectionView.addSubview(newRightSideSnapshotView)
       newRightSideSnapshotView.frame = CGRect(x: bounds.maxX, y: 0, width: cell.bounds.width, height: cell.bounds.height)
+      self.newRightSideSnapshot = newRightSideSnapshotView
     }
     
-    collectionView.alpha = 0
+    collectionView.visibleCells.forEach { $0.alpha = 0 }
     
     // MARK: Animate old cell out
     let oldCellLayer = oldCellSnapshotView.layer
@@ -330,7 +364,9 @@ extension GlidingCollection {
     // MARK: Animate old right cell off-screen
     let oldRightSideLayer = oldRightSideSnapshotView.layer
     oldRightSideLayer.anchorPoint = .zero
-    oldRightSideLayer.position = CGPoint(x: cellFrame.maxX + space, y: cellFrame.minY)
+    oldRightSideLayer.position = CGPoint(x: cellFrame.maxX + space, y: 0)
+    let oldRightSideNewPosition = CGPoint(x: bounds.width, y: 0)
+    let oldRightSideNewValue = AnimationValue.position(oldRightSideNewPosition)
     animate(oldRightSideLayer, newValue: oldRightSideNewValue, item: .oldRightSide, index: index)
     
     // MARK: Animate buttons
@@ -390,7 +426,7 @@ extension GlidingCollection {
     newRightSideLayer.position = CGPoint(x: bounds.width, y: 0)
     let newRightSideNewValue = AnimationValue.position(position)
     let newRightSideDelay = duration + newCellAnimationDelay
-    animate(newRightSideLayer, newValue: newRightSideNewValue, item: .newRightSide, duration: config.animationDuration, delay: newRightSideDelay * 1.5, index: index)
+    animate(newRightSideLayer, newValue: newRightSideNewValue, item: .newRightSide, duration: config.animationDuration, delay: newRightSideDelay, index: index)
     self.newRightSideLayer = newRightSideLayer
     
     animationInProcess = true
@@ -415,10 +451,21 @@ extension GlidingCollection {
   }
   
   fileprivate func resetViews() {
-    self.collectionView.alpha = 1
+    // Remove temporary layer
+    newRightSideLayer = nil
+    
+    // Unhide visibleCells
+    for cell in collectionView.visibleCells {
+      cell.alpha = 1
+    }
+    
+    // Remove all snapshot layers
     for anilayer in animationLayersDictionary.values {
       anilayer.layer.removeFromSuperlayer()
     }
+    
+    // Set new index to temporary property
+    lastExpandedItemIndex = expandedItemIndex
   }
   
   @objc fileprivate func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -434,9 +481,9 @@ extension GlidingCollection {
       let up = location.y > gestureStartPosition.y
       
       let range = abs(location.y - gestureStartPosition.y)
-      
+      let decelerating = collectionView.isDecelerating
       let numberOfItems = dataSource?.numberOfItems(in: self) ?? 0
-      if (expandedItemIndex == 0 && up) || (expandedItemIndex == numberOfItems - 1 && !up), !animationInProcess {
+      if (expandedItemIndex == 0 && up) || (expandedItemIndex == numberOfItems - 1 && !up), !animationInProcess, !decelerating {
         let y = collectionView.frame.minY
         if gestureTranslation == 0 {
           gestureTranslation = y
@@ -577,15 +624,21 @@ extension GlidingCollection: CAAnimationDelegate {
       }
       
       switch item {
+      case .oldRightSide:
+        collectionView.isUserInteractionEnabled = true
+        
+      case .newCell where index == expandedItemIndex && anilayer.animation.beginTime == anim.beginTime:
+//        collectionView.isUserInteractionEnabled = true
+        let paths = collectionView.indexPathsForVisibleItems.sorted { $0.0.item < $0.1.item }
+        guard let path = paths.first, let cell = collectionView.cellForItem(at: path) else {
+          break
+        }
+        cell.alpha = 1
+        anilayer.layer.removeFromSuperlayer()
+        
       case .newRightSide where index == expandedItemIndex && anilayer.animation.beginTime == anim.beginTime:
-        self.hideNewCell(hide: false)
         resetViews()
         animationInProcess = false
-      case .newCell where index == expandedItemIndex && anilayer.animation.beginTime == anim.beginTime:
-        
-        collectionView.alpha = 1
-        anilayer.layer.removeFromSuperlayer()
-        hideNewCell(hide: true)
       default: break
       }
     }
@@ -643,15 +696,29 @@ extension GlidingCollection: CAAnimationDelegate {
     }
   }
   
+  fileprivate func getAnilayer(of item: AnimationItem, at index: Int) -> AniLayer? {
+    let id = "\(item.rawValue),\(index)"
+    return animationLayersDictionary[id]
+  }
+  
 }
 
 // MARK: - GlidingLayoutDelegate
 extension GlidingCollection: GlidingLayoutDelegate {
   
   func collectionViewDidScroll() {
+    for cell in collectionView.visibleCells where cell.alpha == 0 {
+      cell.alpha = 1
+    }
     guard animationInProcess else { return }
+    
+    if let anilayer = getAnilayer(of: AnimationItem.oldRightSide, at: lastExpandedItemIndex) {
+      anilayer.layer.removeFromSuperlayer()
+    }
+    
     if let layer = self.newRightSideLayer {
-      speedUp(layer, reverse: false)
+      layer.removeFromSuperlayer()
+      self.newRightSideLayer = nil
     }
   }
   
