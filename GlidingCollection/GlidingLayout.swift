@@ -17,6 +17,7 @@ public class GlidingLayout: UICollectionViewFlowLayout {
   
   var delegate: GlidingLayoutDelegate?
   
+  /// :nodoc:
   public override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
     
     guard let collectionView = self.collectionView else {
@@ -41,5 +42,10 @@ public class GlidingLayout: UICollectionViewFlowLayout {
     return offset
   }
  
+  /// :nodoc:
+  public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+    delegate?.collectionViewDidScroll()
+    return true
+  }
   
 }
