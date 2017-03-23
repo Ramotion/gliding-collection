@@ -32,6 +32,11 @@ extension ViewController {
   }
   
   private func setupGlidingCollectionView() {
+    var config = GlidingConfig.shared
+    config.buttonsFont = UIFont.boldSystemFont(ofSize: 22)
+    config.inactiveButtonsColor = config.activeButtonColor
+    GlidingConfig.shared = config
+    
     glidingView = GlidingCollection()
     glidingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     glidingView.frame = view.bounds
