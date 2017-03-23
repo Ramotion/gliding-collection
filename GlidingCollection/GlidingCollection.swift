@@ -22,13 +22,18 @@ public class GlidingCollection: UIView {
   }
   
   /// Index of expanded item.
-  public var expandedItemIndex = 0
+  public var expandedItemIndex = 0 {
+    didSet {
+      guard let count = dataSource?.numberOfItems(in: self) else { return }
+      containerView.isScrollEnabled = expandedItemIndex == 0 || expandedItemIndex == count - 1
+    }
+  }
   
   /// Horizontal scrolling collectionView.
   public var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
   
   // MARK: Private properties
-  fileprivate var containerView = UIView()
+  fileprivate var containerView = UIScrollView()
   fileprivate var scaledTransform: CGAffineTransform {
     let scale = config.buttonsScaleFactor
     return CGAffineTransform(scaleX: scale, y: scale)
@@ -40,12 +45,12 @@ public class GlidingCollection: UIView {
   // Gesture related properties.
   fileprivate var gesture: UIPanGestureRecognizer!
   fileprivate var gestureStartPosition: CGPoint = .zero
-  fileprivate var gestureTranslation: CGFloat = 0
   fileprivate enum Direction {
     case up, down
   }
   fileprivate var lastDirection = Direction.down
   
+  fileprivate let layout = GlidingLayout()
   fileprivate var lastExpandedItemIndex = 0
   fileprivate var animationInProcess = false
   fileprivate var animationViewsDictionary: [String: AniView] = [:]
@@ -56,10 +61,6 @@ public class GlidingCollection: UIView {
   
   // MARK: Snapshots
   fileprivate var newRightSideSnapshot: UIView?
-  fileprivate var topHalfSnapshot: UIView?
-  fileprivate var topHalfSnapshotFrame: CGRect = .zero
-  fileprivate var bottomHalfSnapshot: UIView?
-  fileprivate var bottomHalfSnapshotFrame: CGRect = .zero
   
   // MARK: Constructor
   /// :nodoc:
@@ -89,6 +90,7 @@ extension GlidingCollection: UIGestureRecognizerDelegate {
   public override func layoutSubviews() {
     super.layoutSubviews()
     containerView.frame = bounds
+    containerView.contentSize = bounds.size
     
     let cardSize = config.cardsSize
     collectionView.frame = CGRect(x: 0, y: bounds.height/2 - cardSize.height/2, width: bounds.width, height: cardSize.height)
@@ -103,9 +105,12 @@ extension GlidingCollection: UIGestureRecognizerDelegate {
     bottomOverlayGradient.frame = CGRect(x: 0, y: collectionView.frame.maxY, width: bounds.width, height: bottomOverylayHeight)
   }
   
-//  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//    return true
-//  }
+  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    if otherGestureRecognizer === containerView.panGestureRecognizer {
+      return true
+    }
+    return false
+  }
   
 }
 
@@ -113,15 +118,20 @@ extension GlidingCollection: UIGestureRecognizerDelegate {
 fileprivate extension GlidingCollection {
   
   func setup() {
-    addSubview(containerView)
+    setupContainerView()
     setupCollectionView()
     setupVerticalStack()
     setupPanGesture()
     setupGradientOverlays()
   }
   
+  private func setupContainerView() {
+    addSubview(containerView)
+    containerView.alwaysBounceVertical = true
+    containerView.delegate = self
+  }
+  
   private func setupCollectionView() {
-    let layout = GlidingLayout()
     layout.itemSize = config.cardsSize
     layout.minimumLineSpacing = config.cardsSpacing
     layout.scrollDirection = .horizontal
@@ -218,7 +228,7 @@ extension GlidingCollection {
     if animationInProcess {
       delay = duration / 3.5
       
-      for subview in subviews where subview.tag == AnimationItem.newRightSide.tag {
+      for subview in subviews + containerView.subviews where subview.tag == AnimationItem.newRightSide.tag {
         let layer = subview.layer
         let position = layer.presentation()?.position ?? CGPoint(x: cellFrame.maxX, y: cellFrame.minY)
         layer.removeAllAnimations()
@@ -226,6 +236,10 @@ extension GlidingCollection {
         let newPosition = CGPoint(x: bounds.width, y: cellFrame.minY)
         let newValue = AnimationValue.position(newPosition)
         animate(subview, newValue: newValue, item: AnimationItem.newRightSide, duration: duration * 1.2, delay: 0, index: lastExpandedItemIndex)
+      }
+      
+      if let aniview = getAniview(of: AnimationItem.newCellWrapper, at: expandedItemIndex) {
+        aniview.view.removeFromSuperview()
       }
       
       lastExpandedItemIndex = expandedItemIndex
@@ -276,7 +290,8 @@ extension GlidingCollection {
         cell.layer.render(in: context)
       }
       oldCellSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
-      addSubview(oldCellSnapshotView)
+      
+      containerView.addSubview(oldCellSnapshotView)
       oldCellSnapshotView.frame = oldCellFrame
       UIGraphicsEndImageContext()
       oldCellSnapshotView.tag = AnimationItem.oldCell.tag
@@ -290,13 +305,14 @@ extension GlidingCollection {
       }
       oldRightSideSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
-      addSubview(oldRightSideSnapshotView)
+      containerView.addSubview(oldRightSideSnapshotView)
       oldRightSideSnapshotView.frame = CGRect(x: oldCellFrame.maxX + space, y: cellFrame.minY, width: cellFrame.width, height: cellFrame.height)
       oldRightSideSnapshotView.tag = AnimationItem.oldRightSide.tag
     }
     
     
     // MARK: Reload collection view & force to layout
+    collectionView.collectionViewLayout.invalidateLayout()
     if collectionView.numberOfItems(inSection: 0) > 0 {
       let path = IndexPath(item: 0, section: 0)
       collectionView.scrollToItem(at: path, at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
@@ -320,7 +336,7 @@ extension GlidingCollection {
       UIGraphicsEndImageContext()
       newCellWrapperView.addSubview(newCellSnapshotView)
       newCellWrapperView.isUserInteractionEnabled = false
-      addSubview(newCellWrapperView)
+      containerView.addSubview(newCellWrapperView)
       
       let imageViewOriginY = up ? -cellFrame.height : 0
       let wrapperViewOriginY = up ? cellFrame.maxY : cellFrame.minY
@@ -340,7 +356,7 @@ extension GlidingCollection {
       }
       newRightSideSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
-      addSubview(newRightSideSnapshotView)
+      containerView.addSubview(newRightSideSnapshotView)
       newRightSideSnapshotView.frame = CGRect(x: bounds.maxX, y: cellFrame.minY, width: cell.bounds.width, height: cell.bounds.height)
       newRightSideSnapshotView.tag = AnimationItem.newRightSide.tag
     }
@@ -455,7 +471,7 @@ extension GlidingCollection {
     
     // Remove all snapshot layers
     let tags = AnimationItem.all.map { $0.tag }
-    for subview in subviews {
+    for subview in subviews + containerView.subviews {
       if tags.contains(subview.tag) {
         subview.removeFromSuperview()
       }
@@ -463,6 +479,8 @@ extension GlidingCollection {
     
     // Set new index to temporary property
     lastExpandedItemIndex = expandedItemIndex
+    
+    animationViewsDictionary = [:]
   }
   
   @objc fileprivate func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -474,83 +492,19 @@ extension GlidingCollection {
       gestureStartPosition = location
       
     case .changed:
-      let translation = gesture.translation(in: self)
+      guard containerView.contentOffset.y == 0 else { break }
+      
       let up = location.y > gestureStartPosition.y
-      
       let range = abs(location.y - gestureStartPosition.y)
-      let decelerating = collectionView.isDecelerating
-      let numberOfItems = dataSource?.numberOfItems(in: self) ?? 0
-      if (expandedItemIndex == 0 && up) || (expandedItemIndex == numberOfItems - 1 && !up), !animationInProcess, !decelerating {
-        let y = collectionView.frame.minY
-        
-        // Set initial values
-        if gestureTranslation == 0 {
-          gestureTranslation = y
-          
-          // Update snapshots if needed
-          if topHalfSnapshot == nil || bottomHalfSnapshot == nil {
-            snapshotTopAndBottom()
-          }
-        }
-        
-        
-        if let snapshot = up ? bottomHalfSnapshot : topHalfSnapshot {
-          if !snapshot.isDescendant(of: containerView) {
-            containerView.addSubview(snapshot)
-          }
-          var frame = snapshot.frame
-          frame.origin.y += translation.y / 4.5
-          
-          // Animate frame changing to avoid flickering
-          UIView.animate(withDuration: 0.1) {
-            snapshot.frame = frame
-          }
-        }
       
-        // Hide views
-        collectionView.isHidden = true
-        (bottomViews + topViews).forEach { $0.isHidden = true }
-        
-        gesture.setTranslation(.zero, in: self)
-      } else {
-        guard gestureTranslation == 0 else { break }
-        if range > 100 || abs(velocity.y) > 300 && abs(velocity.x) < 300 {
-          up ? self.expandPrevious() : self.expandNext()
-          gesture.isEnabled = false
-          gesture.isEnabled = true
-          self.gestureStartPosition = .zero
-        }
+      if range > 100 || abs(velocity.y) > 300 && abs(velocity.x) < 300 {
+        up ? self.expandPrevious() : self.expandNext()
+        gesture.isEnabled = false
+        gesture.isEnabled = true
       }
-    case .ended, .failed, .cancelled: resetContainersFrames()
     default: break
     }
     
-  }
-  
-  fileprivate func snapshotTopAndBottom() {
-    let size = CGSize(width: bounds.width, height: bounds.height)
-    UIGraphicsBeginImageContextWithOptions(size, false, 0)
-    containerView.drawHierarchy(in: bounds, afterScreenUpdates: false)
-    let snapshot = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
-    
-    UIGraphicsEndImageContext()
-    UIGraphicsBeginImageContextWithOptions(size, false, 0)
-    let topButtonFrame = topViews.first?.frame ?? CGRect.zero
-    let topButtonOriginY = topButtonFrame.origin.y
-    bottomHalfSnapshotFrame = CGRect(x: 0, y: topButtonOriginY, width: bounds.width, height: size.height)
-    let point = CGPoint(x: 0, y: -bottomHalfSnapshotFrame.origin.y)
-    snapshot.draw(at: point)
-    bottomHalfSnapshot = UIImageView(image: UIGraphicsGetImageFromCurrentImageContext())
-    bottomHalfSnapshot?.frame = bottomHalfSnapshotFrame
-    UIGraphicsEndImageContext()
-    
-    let topSize = CGSize(width: bounds.width, height: bounds.height - collectionView.frame.minY)
-    UIGraphicsBeginImageContextWithOptions(topSize, false, 0)
-    containerView.drawHierarchy(in: bounds, afterScreenUpdates: false)
-    topHalfSnapshotFrame = CGRect(x: 0, y: 0, width: topSize.width, height: topSize.height)
-    topHalfSnapshot = UIImageView(image: UIGraphicsGetImageFromCurrentImageContext())
-    topHalfSnapshot?.frame = topHalfSnapshotFrame
-    UIGraphicsEndImageContext()
   }
   
 }
@@ -569,7 +523,6 @@ private enum AnimationValue {
     }
   }
 }
-
 
 private enum AnimationItem: String {
   case oldCell, oldRightSide
@@ -649,7 +602,6 @@ extension GlidingCollection: CAAnimationDelegate {
       switch item {
       case .oldRightSide:
         collectionView.isUserInteractionEnabled = true
-        
       case .newCell where index == expandedItemIndex && aniview.animation.beginTime == anim.beginTime:
         let paths = collectionView.indexPathsForVisibleItems.sorted { $0.0.item < $0.1.item }
         guard let path = paths.first, let cell = collectionView.cellForItem(at: path) else {
@@ -696,30 +648,6 @@ extension GlidingCollection: CAAnimationDelegate {
     }
   }
   
-  fileprivate func resetContainersFrames() {
-    UIView.animate(withDuration: 0.3, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
-      self.topHalfSnapshot?.frame = self.topHalfSnapshotFrame
-      self.bottomHalfSnapshot?.frame = self.bottomHalfSnapshotFrame
-    }, completion: { _ in
-      guard self.gesture.state != UIGestureRecognizerState.changed else { return }
-      self.gestureTranslation = 0
-      self.collectionView.isHidden = false
-      (self.topViews + self.bottomViews).forEach { $0.isHidden = false }
-      self.topHalfSnapshot?.removeFromSuperview()
-      self.bottomHalfSnapshot?.removeFromSuperview()
-      self.topHalfSnapshot = nil
-      self.bottomHalfSnapshot = nil
-    })
-  }
-  
-  fileprivate func hideNewCell(hide: Bool) {
-    let path = IndexPath(item: 1, section: 0)
-    let newAlpha: CGFloat = hide ? 0 : 1
-    if let cell = collectionView.cellForItem(at: path), cell.alpha != newAlpha {
-      cell.alpha = newAlpha
-    }
-  }
-  
   fileprivate func getAniview(of item: AnimationItem, at index: Int) -> AniView? {
     let id = "\(item.rawValue),\(index)"
     return animationViewsDictionary[id]
@@ -736,10 +664,25 @@ extension GlidingCollection: GlidingLayoutDelegate {
     }
     guard animationInProcess else { return }
     let tags = AnimationItem.all.map { $0.tag }
-    for subview in subviews {
+    for subview in subviews + containerView.subviews {
       if tags.contains(subview.tag) {
         subview.removeFromSuperview()
       }
+    }
+  }
+  
+}
+
+// MARK: - ScrollView Delegate
+extension GlidingCollection: UIScrollViewDelegate {
+
+  public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    guard let count = dataSource?.numberOfItems(in: self), expandedItemIndex == 0 || expandedItemIndex == count - 1 else { return }
+    let top = expandedItemIndex == 0
+    let y = scrollView.contentOffset.y
+    let condition = top ? y > 0 : y < 0
+    if condition {
+      scrollView.contentOffset.y = 0
     }
   }
   
