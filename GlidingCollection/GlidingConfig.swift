@@ -23,13 +23,13 @@ public struct GlidingConfig {
   public var animationDuration: Double = 0.3
   
   /// Spacing between vertical stack of items.
-  public var buttonsSpacing: CGFloat = 20
+  public var buttonsSpacing: CGFloat = 15
   
-  /// Font size of each element in vertical stack.
-  public var buttonsFontSize: CGFloat = 16
+  /// Font of each element in vertical stack.
+  public var buttonsFont: UIFont = UIFont.systemFont(ofSize: 16)
   
   /// Scale factor of inactive sections buttons.
-  public var buttonsScaleFactor: CGFloat = 0.75
+  public var buttonsScaleFactor: CGFloat = 0.65
   
   /// Active section button color.
   public var activeButtonColor: UIColor = .darkGray
