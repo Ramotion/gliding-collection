@@ -6,12 +6,12 @@
 // Copyright (c) 2017 Ramotion Inc. All rights reserved.
 //
 
+
 import UIKit
 
 protocol GlidingLayoutDelegate {
   func collectionViewDidScroll()
 }
-
 
 public class GlidingLayout: UICollectionViewFlowLayout {
   
@@ -46,6 +46,31 @@ public class GlidingLayout: UICollectionViewFlowLayout {
   public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
     delegate?.collectionViewDidScroll()
     return true
+  }
+
+  public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    guard let attributes = super.layoutAttributesForElements(in: rect) else { return nil }
+    guard GlidingConfig.shared.isParallaxEnabled else { return attributes }
+    let transformed = attributes.map { transformLayoutAttributes($0) }
+    return transformed
+  }
+  
+  private func transformLayoutAttributes(_ attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    
+    guard let collectionView = self.collectionView else { return attributes }
+    
+    let startOffset = (attributes.frame.origin.x - collectionView.contentOffset.x - sectionInset.left) / attributes.frame.width
+    let maxScale: CGFloat = 1.2
+    let minScale: CGFloat = 1.0
+    
+    let divided = abs(startOffset) / 10
+    let scale = max(minScale, min(maxScale, 1.0 + divided))
+    
+    if let contentView = collectionView.cellForItem(at: attributes.indexPath)?.contentView, let parallaxView = contentView.viewWithTag(99) {
+      parallaxView.transform = CGAffineTransform(scaleX: scale, y: scale)
+    }
+  
+    return attributes
   }
   
 }
