@@ -8,6 +8,7 @@
 
 import UIKit
 
+public let kGlidingCollectionParallaxViewTag = 99
 
 public class GlidingCollection: UIView {
   
@@ -112,6 +113,15 @@ extension GlidingCollection: UIGestureRecognizerDelegate {
     return false
   }
   
+  public override func didMoveToWindow() {
+    super.didMoveToWindow()
+    
+    // Can't find better way to force collectionView to apply custom attributes.
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
+      self.layout.invalidateLayout()
+    }
+  }
+
 }
 
 // MARK: - Setup ⛏
@@ -136,16 +146,17 @@ fileprivate extension GlidingCollection {
     layout.minimumLineSpacing = config.cardsSpacing
     layout.scrollDirection = .horizontal
     let insets = config.sideInsets
-    let rightInset = UIScreen.main.bounds.width - config.cardsSize.width
+    let rightInset = UIScreen.main.bounds.width - config.cardsSize.width - insets.left
     layout.sectionInset = UIEdgeInsets(top: 0, left: insets.left, bottom: 0, right: rightInset)
     layout.delegate = self
     
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    
     containerView.insertSubview(collectionView, at: 0)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.delaysContentTouches = true
+    collectionView.clipsToBounds = false
+    collectionView.collectionViewLayout.invalidateLayout()
   }
   
   fileprivate func setupVerticalStack() {
@@ -178,9 +189,7 @@ fileprivate extension GlidingCollection {
 
   private func setupGradientOverlays() {
     topOverlayGradient.colors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0).cgColor]
-    
     bottomOverlayGradient.colors = [UIColor.white.withAlphaComponent(0).cgColor, UIColor.white.cgColor]
-    
     layer.addSublayer(topOverlayGradient)
     layer.addSublayer(bottomOverlayGradient)
   }
@@ -189,6 +198,15 @@ fileprivate extension GlidingCollection {
     gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
     gesture.delegate = self
     addGestureRecognizer(gesture)
+  }
+  
+  fileprivate func setShadow(to view: UIView) {
+    view.clipsToBounds = false
+    let layer = view.layer
+    layer.shadowOffset = config.cardShadowOffset
+    layer.shadowColor = config.cardShadowColor.cgColor
+    layer.shadowOpacity = config.cardShadowOpacity
+    layer.shadowRadius = config.cardShadowRadius
   }
   
 }
@@ -223,7 +241,6 @@ extension GlidingCollection {
     let space = config.cardsSpacing
     let cellFrame = CGRect(x: minX, y: collectionView.frame.minY, width: config.cardsSize.width, height: config.cardsSize.height)
     
-
     var delay: Double = 0
     if animationInProcess {
       delay = duration / 3.5
@@ -282,7 +299,6 @@ extension GlidingCollection {
       cellIndex += 1
     }
     
-    
     // MARK: Snapshot of old cell
     if let path = paths[safe: cellIndex], let cell = collectionView.cellForItem(at: path) {
       UIGraphicsBeginImageContextWithOptions(cell.frame.size, true, 0)
@@ -290,11 +306,11 @@ extension GlidingCollection {
         cell.layer.render(in: context)
       }
       oldCellSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
-      
       containerView.addSubview(oldCellSnapshotView)
       oldCellSnapshotView.frame = oldCellFrame
       UIGraphicsEndImageContext()
       oldCellSnapshotView.tag = AnimationItem.oldCell.tag
+      setShadow(to: oldCellSnapshotView)
     }
     
     // MARK: Snapshot of right side of collectionView
@@ -308,8 +324,8 @@ extension GlidingCollection {
       containerView.addSubview(oldRightSideSnapshotView)
       oldRightSideSnapshotView.frame = CGRect(x: oldCellFrame.maxX + space, y: cellFrame.minY, width: cellFrame.width, height: cellFrame.height)
       oldRightSideSnapshotView.tag = AnimationItem.oldRightSide.tag
+      setShadow(to: oldRightSideSnapshotView)
     }
-    
     
     // MARK: Reload collection view & force to layout
     collectionView.collectionViewLayout.invalidateLayout()
@@ -328,9 +344,13 @@ extension GlidingCollection {
     
     // MARK: Snapshot of new cell
     if let path = paths.first, let cell = collectionView.cellForItem(at: path) {
+      cell.contentView.transform = .identity
       UIGraphicsBeginImageContextWithOptions(cellFrame.size, true, 0)
       if let context = UIGraphicsGetCurrentContext() {
-        cell.layer.render(in: context)
+        if let parallaxView = cell.contentView.viewWithTag(kGlidingCollectionParallaxViewTag) {
+          parallaxView.transform = .identity
+        }
+        cell.contentView.layer.render(in: context)
       }
       newCellSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
@@ -346,10 +366,17 @@ extension GlidingCollection {
       
       newCellWrapperView.tag = AnimationItem.newCellWrapper.tag
       newCellSnapshotView.tag = AnimationItem.newCell.tag
+      setShadow(to: newCellWrapperView)
     }
     
     // MARK: Snapshot of right side of collectionView
     if let path = paths[safe: 1], let cell = collectionView.cellForItem(at: path) {
+      if let attributes = collectionView.collectionViewLayout.layoutAttributesForElements(in: cell.frame),
+        let targetAttributes = attributes.filter({ $0.indexPath == path }).first,
+        let _ = collectionView.cellForItem(at: targetAttributes.indexPath) {
+//        cell.contentView.transform = c.contentView.transform
+      }
+      
       UIGraphicsBeginImageContextWithOptions(cell.bounds.size, true, 0)
       if let context = UIGraphicsGetCurrentContext() {
         cell.layer.render(in: context)
@@ -359,6 +386,7 @@ extension GlidingCollection {
       containerView.addSubview(newRightSideSnapshotView)
       newRightSideSnapshotView.frame = CGRect(x: bounds.maxX, y: cellFrame.minY, width: cell.bounds.width, height: cell.bounds.height)
       newRightSideSnapshotView.tag = AnimationItem.newRightSide.tag
+      setShadow(to: newRightSideSnapshotView)
     }
     
     collectionView.visibleCells.forEach { $0.alpha = 0 }
@@ -470,17 +498,21 @@ extension GlidingCollection {
     collectionView.visibleCells.forEach { $0.alpha = 1 }
     
     // Remove all snapshot layers
+    removeSnapshots()
+    
+    // Set new index to temporary property
+    lastExpandedItemIndex = expandedItemIndex
+    
+    animationViewsDictionary = [:]
+  }
+  
+  fileprivate func removeSnapshots() {
     let tags = AnimationItem.all.map { $0.tag }
     for subview in subviews + containerView.subviews {
       if tags.contains(subview.tag) {
         subview.removeFromSuperview()
       }
     }
-    
-    // Set new index to temporary property
-    lastExpandedItemIndex = expandedItemIndex
-    
-    animationViewsDictionary = [:]
   }
   
   @objc fileprivate func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -582,7 +614,6 @@ extension GlidingCollection: CAAnimationDelegate {
     animation.setValue(animationId, forKey: "id")
     
     animationViewsDictionary[animationId] = (view: view, animation: animation)
-    layer.name = "snapshotLayer"
     
     layer.add(animation, forKey: animationId)
     return animation
@@ -602,6 +633,7 @@ extension GlidingCollection: CAAnimationDelegate {
       switch item {
       case .oldRightSide:
         collectionView.isUserInteractionEnabled = true
+        
       case .newCell where index == expandedItemIndex && aniview.animation.beginTime == anim.beginTime:
         let paths = collectionView.indexPathsForVisibleItems.sorted { $0.0.item < $0.1.item }
         guard let path = paths.first, let cell = collectionView.cellForItem(at: path) else {
@@ -663,12 +695,7 @@ extension GlidingCollection: GlidingLayoutDelegate {
       cell.alpha = 1
     }
     guard animationInProcess else { return }
-    let tags = AnimationItem.all.map { $0.tag }
-    for subview in subviews + containerView.subviews {
-      if tags.contains(subview.tag) {
-        subview.removeFromSuperview()
-      }
-    }
+    removeSnapshots()
   }
   
 }
