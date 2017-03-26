@@ -12,7 +12,7 @@ import GlidingCollection
 
 class ViewController: UIViewController {
   
-  var glidingView: GlidingCollection!
+  @IBOutlet var glidingView: GlidingCollection!
   fileprivate var collectionView: UICollectionView!
   fileprivate var items = ["shirts", "pants", "vests", "denims", "polos", "track wear"]
   fileprivate var images: [[UIImage?]] = []
@@ -38,15 +38,9 @@ extension ViewController {
     config.inactiveButtonsColor = config.activeButtonColor
     GlidingConfig.shared = config
     
-    glidingView = GlidingCollection()
-    glidingView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    glidingView.frame = view.bounds
-    glidingView.backgroundColor = #colorLiteral(red: 0.9401558042, green: 0.952983439, blue: 0.956292212, alpha: 1)
     glidingView.dataSource = self
-    view.addSubview(glidingView)
     
     let nib = UINib(nibName: "CollectionCell", bundle: nil)
-    
     collectionView = glidingView.collectionView
     collectionView.register(nib, forCellWithReuseIdentifier: "Cell")
     collectionView.delegate = self
@@ -71,7 +65,7 @@ extension ViewController {
 
 // MARK: - CollectionView 🎛
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
- 
+  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     let section = glidingView.expandedItemIndex
     return images[section].count
