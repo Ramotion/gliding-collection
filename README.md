@@ -15,6 +15,12 @@ This project is maintained by Ramotion, Inc.<br>
 We specialize in the designing and coding of custom UI for Mobile Apps and Websites.<br><br>**Looking for developers for your project?**
 
 <a href="http://business.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=elongation-preview-contact-us/#Get_in_Touch" > <img src="https://github.com/Ramotion/navigation-stack/raw/master/contact_our_team@2x.png" width="150" height="30"></a>
+
+<!-- [![animation](/assets/GlidingCollection.gif)](https://dribbble.com/shots/3333066-Elongation-Preview-App-Interface-UX-UI) -->
+
+The [iPhone mockup](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=elongation-preview) available [here](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=elongation-preview).
+<br>
+
 ## Requirements
 
 - iOS 8.0+
@@ -46,11 +52,82 @@ github "Ramotion/gliding-collection"
 
 ## How to use
 
-First of all, import module to your source file.
+• Create some view controller class:
 
 ```swift
 import GlidingCollection
+
+class ViewController: UIViewController {
+  let items = ["shirts", "pants", "vests"]
+}
 ```
+
+• Drag `UIView` onto the canvas, change it's class to `GlidingCollection` and set autolayout constraints.
+
+![step-2](/assets/step-2.png)
+
+• Connect this view to your view controller class as `@IBOutlet`.
+
+```swift
+@IBOutlet var glidingCollection: GlidingCollection!
+```
+
+• Make your view controller conformant to `GlidingCollectionDatasource`. It's very similar to `UITableView` or `UICollectionView` *datasource* protocols that you know:
+
+```swift
+extension ViewController: GlidingCollectionDatasource {
+
+  func numberOfItems(in collection: GlidingCollection) -> Int {
+    return items.count
+  }
+
+  func glidingCollection(_ collection: GlidingCollection, itemAtIndex index: Int) -> String {
+    return "– " + items[index]
+  }
+
+}
+```
+
+• Make your view controller conformant to `UICollectionViewDatasource`:
+
+```swift
+extension ViewController: UICollectionViewDatasource {
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    let section = glidingView.expandedItemIndex // Value of expanded section.
+    return images[section].count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CollectionCell else { return UICollectionViewCell() }
+    // Configure and return your cell.
+    return cell
+  }
+  
+}
+```
+
+## Customize
+
+You can customize appearance of `GlidingCollection` by overriding `GlidingCollection`'s `shared` instance with your own one.
+
+```swift
+var config = GlidingConfig.shared
+config.buttonsFont = UIFont.boldSystemFont(ofSize: 22)
+config.activeButtonColor = .black
+config.inactiveButtonsColor = .lightGray
+GlidingConfig.shared = config
+```
+
+>🗒 All parameters with their descriptions listed in [`GlidingConfig`](/GlidingCollection/GlidingConfig.swift) file.
+
+<br>
+
+## Notes
+
+There are [`GlidingCollectionDelegate`](/GlidingCollection/Protocols/GlidingCollectionDelegate.swift) protocol which can you notify when *item* in `GlidingCollection` `didSelect`, `willExpand` and `didExpand`.
+
+<br>
 
 ## License
 
