@@ -109,7 +109,7 @@ extension ViewController: UICollectionViewDatasource {
 
 ## Customize
 
-You can customize appearance of `GlidingCollection` by overriding `GlidingCollection`'s `shared` instance with your own one.
+You can customize appearance of `GlidingCollection` by overriding `GlidingConfig`'s `shared` instance with your own one.
 
 ```swift
 var config = GlidingConfig.shared
