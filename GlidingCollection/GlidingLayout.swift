@@ -9,16 +9,16 @@
 
 import UIKit
 
+/// :nodoc:
 protocol GlidingLayoutDelegate {
   func collectionViewDidScroll()
 }
 
-public class GlidingLayout: UICollectionViewFlowLayout {
+class GlidingLayout: UICollectionViewFlowLayout {
   
   var delegate: GlidingLayoutDelegate?
   
-  /// :nodoc:
-  public override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+  override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
     
     guard let collectionView = self.collectionView else {
       return proposedContentOffset
@@ -42,13 +42,12 @@ public class GlidingLayout: UICollectionViewFlowLayout {
     return offset
   }
  
-  /// :nodoc:
-  public override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+  override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
     delegate?.collectionViewDidScroll()
     return true
   }
 
-  public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+  override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
     guard let attributes = super.layoutAttributesForElements(in: rect) else { return nil }
     guard GlidingConfig.shared.isParallaxEnabled else { return attributes }
     let transformed = attributes.map { transformLayoutAttributes($0) }

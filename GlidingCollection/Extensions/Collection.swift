@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+// :nodoc:
 extension Collection {
   subscript(safe index: Index) -> Generator.Element? {
     return index >= startIndex && index < endIndex ? self[index] : nil
