@@ -13,8 +13,9 @@ import GlidingCollection
 class ViewController: UIViewController {
   
   var glidingView: GlidingCollection!
-  var items = ["shirts", "pants", "vests", "denims", "polos", "track wear"]
-  var images: [[UIImage?]] = []
+  fileprivate var collectionView: UICollectionView!
+  fileprivate var items = ["shirts", "pants", "vests", "denims", "polos", "track wear"]
+  fileprivate var images: [[UIImage?]] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -42,16 +43,15 @@ extension ViewController {
     glidingView.frame = view.bounds
     glidingView.backgroundColor = #colorLiteral(red: 0.9401558042, green: 0.952983439, blue: 0.956292212, alpha: 1)
     glidingView.dataSource = self
+    view.addSubview(glidingView)
     
     let nib = UINib(nibName: "CollectionCell", bundle: nil)
     
-    let collectionView = glidingView.collectionView
+    collectionView = glidingView.collectionView
     collectionView.register(nib, forCellWithReuseIdentifier: "Cell")
     collectionView.delegate = self
     collectionView.dataSource = self
     collectionView.backgroundColor = glidingView.backgroundColor
-    
-    view.addSubview(glidingView)
   }
   
   private func loadImages() {
@@ -82,6 +82,15 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     let section = glidingView.expandedItemIndex
     let image = images[section][indexPath.row]
     cell.imageView.image = image
+    cell.contentView.clipsToBounds = true
+    
+    let layer = cell.layer
+    let config = GlidingConfig.shared
+    layer.shadowOffset = config.cardShadowOffset
+    layer.shadowColor = config.cardShadowColor.cgColor
+    layer.shadowOpacity = config.cardShadowOpacity
+    layer.shadowRadius = config.cardShadowRadius
+    
     return cell
   }
   
