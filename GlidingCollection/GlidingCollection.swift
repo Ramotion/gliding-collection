@@ -250,7 +250,7 @@ extension GlidingCollection {
         let position = layer.presentation()?.position ?? CGPoint(x: cellFrame.maxX, y: cellFrame.minY)
         layer.removeAllAnimations()
         layer.position = position
-        let newPosition = CGPoint(x: bounds.width, y: cellFrame.minY)
+        let newPosition = CGPoint(x: bounds.width + space, y: cellFrame.minY)
         let newValue = AnimationValue.position(newPosition)
         animate(subview, newValue: newValue, item: AnimationItem.newRightSide, duration: duration * 1.2, delay: 0, index: lastExpandedItemIndex)
       }
@@ -268,6 +268,7 @@ extension GlidingCollection {
     let oldCellSnapshotView = UIImageView()
     
     let newCellWrapperView = UIView()
+    let newCellShadowView = UIView()
     let newCellSnapshotView = UIImageView()
     let newRightSideSnapshotView = UIImageView()
     
@@ -355,18 +356,22 @@ extension GlidingCollection {
       newCellSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
       newCellWrapperView.addSubview(newCellSnapshotView)
+      newCellWrapperView.clipsToBounds = true
       newCellWrapperView.isUserInteractionEnabled = false
+      containerView.addSubview(newCellShadowView)
       containerView.addSubview(newCellWrapperView)
       
       let imageViewOriginY = up ? -cellFrame.height : 0
-      let wrapperViewOriginY = up ? cellFrame.maxY : cellFrame.minY
       newCellSnapshotView.frame = CGRect(x: 0, y: imageViewOriginY, width: cellFrame.width, height: cellFrame.height)
-      newCellWrapperView.clipsToBounds = true
-      newCellWrapperView.frame = CGRect(x: minX, y: wrapperViewOriginY, width: 0, height: 0)
+      newCellWrapperView.frame = CGRect(x: minX, y: cellFrame.minY, width: 0, height: 0)
+      newCellShadowView.frame = newCellWrapperView.frame
       
       newCellWrapperView.tag = AnimationItem.newCellWrapper.tag
       newCellSnapshotView.tag = AnimationItem.newCell.tag
-      setShadow(to: newCellWrapperView)
+      newCellShadowView.tag = AnimationItem.newCellShadow.tag
+      
+      newCellShadowView.backgroundColor = backgroundColor
+      setShadow(to: newCellShadowView)
     }
     
     // MARK: Snapshot of right side of collectionView
@@ -447,23 +452,28 @@ extension GlidingCollection {
     var newCellWrapperNewBounds = CGRect.zero
     newCellWrapperNewBounds.size = cellFrame.size
     let newCellWrapperNewBoundsValue = AnimationValue.bounds(newCellWrapperNewBounds)
+    
+    newCellShadowView.layer.anchorPoint = newCellWrapperLayer.anchorPoint
+    newCellShadowView.layer.position = newCellWrapperLayer.position
+    newCellShadowView.layer.bounds = .zero
+    
+    animate(newCellShadowView, newValue: newCellWrapperNewBoundsValue, item: .newCellShadow, delay: newCellAnimationDelay, index: index)
     animate(newCellWrapperView, newValue: newCellWrapperNewBoundsValue, item: .newCellWrapper, delay: newCellAnimationDelay, index: index)
+    
     
     // MARK: Animate cell snapshot
     let newCellSnapshotLayer = newCellSnapshotView.layer
-    newCellSnapshotLayer.anchorPoint = up ? CGPoint(x: 0, y: 1) : CGPoint(x: 0, y: 0)
-    newCellSnapshotLayer.position = up ? CGPoint(x: 0, y: cellFrame.height) : CGPoint(x: 0, y: 0)
-    var newCellSnapshotNewBounds = CGRect.zero
-    newCellSnapshotNewBounds.size = cellFrame.size
-    let newCellSnapshotNewBoundsValue = AnimationValue.bounds(newCellSnapshotNewBounds)
-    newCellSnapshotLayer.bounds = .zero
-    animate(newCellSnapshotView, newValue: newCellSnapshotNewBoundsValue, item: .newCell, delay: newCellAnimationDelay, index: index)
+    newCellSnapshotLayer.anchorPoint = .zero
+    newCellSnapshotLayer.position = up ? CGPoint(x: 0, y: -cellFrame.height) : CGPoint(x: 0, y: 0)
+    let newCellNewPosition = CGPoint.zero
+    let newCellNewValue = AnimationValue.position(newCellNewPosition)
+    animate(newCellSnapshotView, newValue: newCellNewValue, item: AnimationItem.newCell, delay: newCellAnimationDelay, index: index)
     
     // MARK: Animate new right side
     let position = CGPoint(x: cellFrame.maxX + space, y: cellFrame.minY)
     let newRightSideLayer = newRightSideSnapshotView.layer
     newRightSideLayer.anchorPoint = .zero
-    newRightSideLayer.position = CGPoint(x: bounds.width, y: cellFrame.minY)
+    newRightSideLayer.position = CGPoint(x: bounds.width + space, y: cellFrame.minY)
     let newRightSideNewValue = AnimationValue.position(position)
     let newRightSideDelay = duration + newCellAnimationDelay
     animate(newRightSideSnapshotView, newValue: newRightSideNewValue, item: .newRightSide, duration: config.animationDuration * 2, delay: newRightSideDelay, index: index)
@@ -558,10 +568,10 @@ private enum AnimationValue {
 
 private enum AnimationItem: String {
   case oldCell, oldRightSide
-  case newCell, newCellWrapper, newRightSide
+  case newCell, newCellWrapper, newCellShadow, newRightSide
   
   static var all: [AnimationItem] {
-    return [AnimationItem.oldCell, .oldRightSide, .newCell, .newCellWrapper, .newRightSide]
+    return [AnimationItem.oldCell, .oldRightSide, .newCell, .newCellWrapper, .newRightSide, .newCellShadow]
   }
   
   var tag: Int {
@@ -571,6 +581,7 @@ private enum AnimationItem: String {
     case .newCell: return 3
     case .newCellWrapper: return 4
     case .newRightSide: return 5
+    case .newCellShadow: return 6
     }
   }
 }
@@ -641,6 +652,11 @@ extension GlidingCollection: CAAnimationDelegate {
         }
         cell.alpha = 1
         aniview.view.removeFromSuperview()
+        
+        // Remove also shadow view
+        if let shadowAniview = getAniview(of: AnimationItem.newCellShadow, at: index) {
+          shadowAniview.view.removeFromSuperview()
+        }
         
       case .newRightSide where index == expandedItemIndex && aniview.animation.beginTime == anim.beginTime:
         resetViews()
