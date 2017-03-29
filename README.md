@@ -127,6 +127,15 @@ GlidingConfig.shared = config
 
 There are [`GlidingCollectionDelegate`](/GlidingCollection/Protocols/GlidingCollectionDelegate.swift) protocol which can you notify when *item* in `GlidingCollection` `didSelect`, `willExpand` and `didExpand`.
 
+If you want to achieve parallax effect on horizontal cards stack, you need to place your `parallax view` in cell's `contentView` and set it's `tag` to `99`.
+
+![parallax-view](/assets/parallax-view.png)
+
+There is `kGlidingCollectionParallaxViewTag` constant if you layout a cell in code.
+```swift
+imageView.tag = kGlidingCollectionParallaxViewTag
+```
+
 <br>
 
 ## License
