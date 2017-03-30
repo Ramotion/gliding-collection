@@ -8,8 +8,11 @@
 
 import UIKit
 
+/// Parallax view tag
 public let kGlidingCollectionParallaxViewTag = 99
 
+/// GlidingCollection control.
+/// Add as subview to your view and implement `dataSource` protocol.
 public class GlidingCollection: UIView {
   
   /// Delegate protocol.
@@ -106,6 +109,7 @@ extension GlidingCollection: UIGestureRecognizerDelegate {
     bottomOverlayGradient.frame = CGRect(x: 0, y: collectionView.frame.maxY, width: bounds.width, height: bottomOverylayHeight)
   }
   
+  /// :nodoc:
   public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
     if otherGestureRecognizer === containerView.panGestureRecognizer {
       return true
@@ -113,6 +117,7 @@ extension GlidingCollection: UIGestureRecognizerDelegate {
     return false
   }
   
+  /// :nodoc:
   public override func didMoveToWindow() {
     super.didMoveToWindow()
     
@@ -630,6 +635,7 @@ extension GlidingCollection: CAAnimationDelegate {
     return animation
   }
   
+  /// :nodoc:
   public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
     
     if let id = anim.value(forKey: "id") as? String, let aniview = animationViewsDictionary[id] {
@@ -719,6 +725,7 @@ extension GlidingCollection: GlidingLayoutDelegate {
 // MARK: - ScrollView Delegate
 extension GlidingCollection: UIScrollViewDelegate {
 
+  /// Must call super if you override this method.
   public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     guard let count = dataSource?.numberOfItems(in: self), expandedItemIndex == 0 || expandedItemIndex == count - 1 else { return }
     let top = expandedItemIndex == 0

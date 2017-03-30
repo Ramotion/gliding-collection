@@ -8,7 +8,8 @@
 
 import UIKit
 
-
+/// Configuration struct. 
+/// Override `shared` property to apply new configuration.
 public struct GlidingConfig {
 
   /// Shared instance of configuration. 
