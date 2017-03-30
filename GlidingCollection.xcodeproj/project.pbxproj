@@ -7,34 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D20720A1E82EB84003E25DB /* denims_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071EF1E82EB84003E25DB /* denims_1.jpeg */; };
-		9D20720B1E82EB84003E25DB /* denims_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071F01E82EB84003E25DB /* denims_2.jpeg */; };
-		9D20720C1E82EB84003E25DB /* denims_3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071F11E82EB84003E25DB /* denims_3.jpeg */; };
-		9D20720D1E82EB84003E25DB /* denims_4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071F21E82EB84003E25DB /* denims_4.jpeg */; };
-		9D20720E1E82EB84003E25DB /* pants_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071F41E82EB84003E25DB /* pants_1.jpeg */; };
-		9D20720F1E82EB84003E25DB /* pants_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071F51E82EB84003E25DB /* pants_2.jpeg */; };
-		9D2072101E82EB84003E25DB /* pants_3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071F61E82EB84003E25DB /* pants_3.jpeg */; };
-		9D2072111E82EB84003E25DB /* pants_4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071F71E82EB84003E25DB /* pants_4.jpeg */; };
-		9D2072121E82EB84003E25DB /* pants_5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071F81E82EB84003E25DB /* pants_5.jpeg */; };
-		9D2072131E82EB84003E25DB /* polos_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071FA1E82EB84003E25DB /* polos_1.jpeg */; };
-		9D2072141E82EB84003E25DB /* polos_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071FB1E82EB84003E25DB /* polos_2.jpeg */; };
-		9D2072151E82EB84003E25DB /* polos_3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071FC1E82EB84003E25DB /* polos_3.jpeg */; };
-		9D2072161E82EB84003E25DB /* polos_4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071FD1E82EB84003E25DB /* polos_4.jpeg */; };
-		9D2072171E82EB84003E25DB /* shirts_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2071FF1E82EB84003E25DB /* shirts_1.jpeg */; };
-		9D2072181E82EB84003E25DB /* shirts_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2072001E82EB84003E25DB /* shirts_2.jpeg */; };
-		9D2072191E82EB84003E25DB /* shirts_3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2072011E82EB84003E25DB /* shirts_3.jpeg */; };
-		9D20721A1E82EB84003E25DB /* shirts_4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2072021E82EB84003E25DB /* shirts_4.jpeg */; };
-		9D20721B1E82EB84003E25DB /* track wear_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2072041E82EB84003E25DB /* track wear_1.jpeg */; };
-		9D20721C1E82EB84003E25DB /* track wear_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2072051E82EB84003E25DB /* track wear_2.jpeg */; };
-		9D20721D1E82EB84003E25DB /* track wear_3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2072061E82EB84003E25DB /* track wear_3.jpeg */; };
-		9D20721E1E82EB84003E25DB /* vests_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2072081E82EB84003E25DB /* vests_1.jpeg */; };
-		9D20721F1E82EB84003E25DB /* vests_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9D2072091E82EB84003E25DB /* vests_2.jpeg */; };
 		9D56EEA41E6B2D5E008C3698 /* GlidingCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D56EEA21E6B2D5E008C3698 /* GlidingCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D56EEB11E6B2D82008C3698 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D56EEB01E6B2D82008C3698 /* AppDelegate.swift */; };
 		9D56EEB31E6B2D82008C3698 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D56EEB21E6B2D82008C3698 /* ViewController.swift */; };
 		9D56EEB61E6B2D82008C3698 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D56EEB41E6B2D82008C3698 /* Main.storyboard */; };
 		9D56EEB81E6B2D82008C3698 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D56EEB71E6B2D82008C3698 /* Assets.xcassets */; };
 		9D56EEBB1E6B2D82008C3698 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D56EEB91E6B2D82008C3698 /* LaunchScreen.storyboard */; };
+		9DC5654C1E8D30AF00D31C76 /* Bindings1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565311E8D30AF00D31C76 /* Bindings1.jpg */; };
+		9DC5654D1E8D30AF00D31C76 /* Bindings2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565321E8D30AF00D31C76 /* Bindings2.jpg */; };
+		9DC5654E1E8D30AF00D31C76 /* Bindings3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565331E8D30AF00D31C76 /* Bindings3.jpg */; };
+		9DC5654F1E8D30AF00D31C76 /* Bindings4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565341E8D30AF00D31C76 /* Bindings4.jpg */; };
+		9DC565501E8D30AF00D31C76 /* Bindings5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565351E8D30AF00D31C76 /* Bindings5.jpg */; };
+		9DC565511E8D30AF00D31C76 /* Boots1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565371E8D30AF00D31C76 /* Boots1.jpg */; };
+		9DC565521E8D30AF00D31C76 /* Boots2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565381E8D30AF00D31C76 /* Boots2.jpg */; };
+		9DC565531E8D30AF00D31C76 /* Boots3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565391E8D30AF00D31C76 /* Boots3.jpg */; };
+		9DC565541E8D30AF00D31C76 /* Boots4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC5653A1E8D30AF00D31C76 /* Boots4.jpg */; };
+		9DC565551E8D30AF00D31C76 /* Boots5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC5653B1E8D30AF00D31C76 /* Boots5.jpg */; };
+		9DC565561E8D30AF00D31C76 /* Boots6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC5653C1E8D30AF00D31C76 /* Boots6.jpg */; };
+		9DC565571E8D30AF00D31C76 /* Boots7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC5653D1E8D30AF00D31C76 /* Boots7.jpg */; };
+		9DC565581E8D30AF00D31C76 /* Gloves1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC5653F1E8D30AF00D31C76 /* Gloves1.jpg */; };
+		9DC565591E8D30AF00D31C76 /* Gloves2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565401E8D30AF00D31C76 /* Gloves2.jpg */; };
+		9DC5655A1E8D30AF00D31C76 /* Gloves3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565411E8D30AF00D31C76 /* Gloves3.jpg */; };
+		9DC5655B1E8D30AF00D31C76 /* Gloves4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565421E8D30AF00D31C76 /* Gloves4.jpg */; };
+		9DC5655C1E8D30AF00D31C76 /* Gloves5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565431E8D30AF00D31C76 /* Gloves5.jpg */; };
+		9DC5655D1E8D30AF00D31C76 /* Gloves6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565441E8D30AF00D31C76 /* Gloves6.jpg */; };
+		9DC5655E1E8D30AF00D31C76 /* Hoodie1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565461E8D30AF00D31C76 /* Hoodie1.jpg */; };
+		9DC5655F1E8D30AF00D31C76 /* Hoodie2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565471E8D30AF00D31C76 /* Hoodie2.jpg */; };
+		9DC565601E8D30AF00D31C76 /* Hoodie3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565481E8D30AF00D31C76 /* Hoodie3.jpg */; };
+		9DC565611E8D30AF00D31C76 /* Hoodie4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC565491E8D30AF00D31C76 /* Hoodie4.jpg */; };
+		9DC565621E8D30AF00D31C76 /* Hoodie5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC5654A1E8D30AF00D31C76 /* Hoodie5.jpg */; };
+		9DC565631E8D30AF00D31C76 /* Hoodie6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9DC5654B1E8D30AF00D31C76 /* Hoodie6.jpg */; };
 		9DD0DCF11E766EF0003E224C /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD0DCCE1E766EF0003E224C /* CollectionCell.swift */; };
 		9DD0DCF21E766EF0003E224C /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DD0DCCF1E766EF0003E224C /* CollectionCell.xib */; };
 		9DD0DCF31E766EF0003E224C /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD0DCD11E766EF0003E224C /* FileManager.swift */; };
@@ -73,28 +75,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9D2071EF1E82EB84003E25DB /* denims_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = denims_1.jpeg; sourceTree = "<group>"; };
-		9D2071F01E82EB84003E25DB /* denims_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = denims_2.jpeg; sourceTree = "<group>"; };
-		9D2071F11E82EB84003E25DB /* denims_3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = denims_3.jpeg; sourceTree = "<group>"; };
-		9D2071F21E82EB84003E25DB /* denims_4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = denims_4.jpeg; sourceTree = "<group>"; };
-		9D2071F41E82EB84003E25DB /* pants_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pants_1.jpeg; sourceTree = "<group>"; };
-		9D2071F51E82EB84003E25DB /* pants_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pants_2.jpeg; sourceTree = "<group>"; };
-		9D2071F61E82EB84003E25DB /* pants_3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pants_3.jpeg; sourceTree = "<group>"; };
-		9D2071F71E82EB84003E25DB /* pants_4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pants_4.jpeg; sourceTree = "<group>"; };
-		9D2071F81E82EB84003E25DB /* pants_5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pants_5.jpeg; sourceTree = "<group>"; };
-		9D2071FA1E82EB84003E25DB /* polos_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polos_1.jpeg; sourceTree = "<group>"; };
-		9D2071FB1E82EB84003E25DB /* polos_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polos_2.jpeg; sourceTree = "<group>"; };
-		9D2071FC1E82EB84003E25DB /* polos_3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polos_3.jpeg; sourceTree = "<group>"; };
-		9D2071FD1E82EB84003E25DB /* polos_4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = polos_4.jpeg; sourceTree = "<group>"; };
-		9D2071FF1E82EB84003E25DB /* shirts_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shirts_1.jpeg; sourceTree = "<group>"; };
-		9D2072001E82EB84003E25DB /* shirts_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shirts_2.jpeg; sourceTree = "<group>"; };
-		9D2072011E82EB84003E25DB /* shirts_3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shirts_3.jpeg; sourceTree = "<group>"; };
-		9D2072021E82EB84003E25DB /* shirts_4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shirts_4.jpeg; sourceTree = "<group>"; };
-		9D2072041E82EB84003E25DB /* track wear_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "track wear_1.jpeg"; sourceTree = "<group>"; };
-		9D2072051E82EB84003E25DB /* track wear_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "track wear_2.jpeg"; sourceTree = "<group>"; };
-		9D2072061E82EB84003E25DB /* track wear_3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "track wear_3.jpeg"; sourceTree = "<group>"; };
-		9D2072081E82EB84003E25DB /* vests_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vests_1.jpeg; sourceTree = "<group>"; };
-		9D2072091E82EB84003E25DB /* vests_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vests_2.jpeg; sourceTree = "<group>"; };
 		9D56EE9F1E6B2D5E008C3698 /* GlidingCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GlidingCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D56EEA21E6B2D5E008C3698 /* GlidingCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlidingCollection.h; sourceTree = "<group>"; };
 		9D56EEA31E6B2D5E008C3698 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,6 +85,30 @@
 		9D56EEB71E6B2D82008C3698 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D56EEBA1E6B2D82008C3698 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D56EEBC1E6B2D82008C3698 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DC565311E8D30AF00D31C76 /* Bindings1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bindings1.jpg; sourceTree = "<group>"; };
+		9DC565321E8D30AF00D31C76 /* Bindings2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bindings2.jpg; sourceTree = "<group>"; };
+		9DC565331E8D30AF00D31C76 /* Bindings3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bindings3.jpg; sourceTree = "<group>"; };
+		9DC565341E8D30AF00D31C76 /* Bindings4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bindings4.jpg; sourceTree = "<group>"; };
+		9DC565351E8D30AF00D31C76 /* Bindings5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bindings5.jpg; sourceTree = "<group>"; };
+		9DC565371E8D30AF00D31C76 /* Boots1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Boots1.jpg; sourceTree = "<group>"; };
+		9DC565381E8D30AF00D31C76 /* Boots2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Boots2.jpg; sourceTree = "<group>"; };
+		9DC565391E8D30AF00D31C76 /* Boots3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Boots3.jpg; sourceTree = "<group>"; };
+		9DC5653A1E8D30AF00D31C76 /* Boots4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Boots4.jpg; sourceTree = "<group>"; };
+		9DC5653B1E8D30AF00D31C76 /* Boots5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Boots5.jpg; sourceTree = "<group>"; };
+		9DC5653C1E8D30AF00D31C76 /* Boots6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Boots6.jpg; sourceTree = "<group>"; };
+		9DC5653D1E8D30AF00D31C76 /* Boots7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Boots7.jpg; sourceTree = "<group>"; };
+		9DC5653F1E8D30AF00D31C76 /* Gloves1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Gloves1.jpg; sourceTree = "<group>"; };
+		9DC565401E8D30AF00D31C76 /* Gloves2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Gloves2.jpg; sourceTree = "<group>"; };
+		9DC565411E8D30AF00D31C76 /* Gloves3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Gloves3.jpg; sourceTree = "<group>"; };
+		9DC565421E8D30AF00D31C76 /* Gloves4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Gloves4.jpg; sourceTree = "<group>"; };
+		9DC565431E8D30AF00D31C76 /* Gloves5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Gloves5.jpg; sourceTree = "<group>"; };
+		9DC565441E8D30AF00D31C76 /* Gloves6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Gloves6.jpg; sourceTree = "<group>"; };
+		9DC565461E8D30AF00D31C76 /* Hoodie1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Hoodie1.jpg; sourceTree = "<group>"; };
+		9DC565471E8D30AF00D31C76 /* Hoodie2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Hoodie2.jpg; sourceTree = "<group>"; };
+		9DC565481E8D30AF00D31C76 /* Hoodie3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Hoodie3.jpg; sourceTree = "<group>"; };
+		9DC565491E8D30AF00D31C76 /* Hoodie4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Hoodie4.jpg; sourceTree = "<group>"; };
+		9DC5654A1E8D30AF00D31C76 /* Hoodie5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Hoodie5.jpg; sourceTree = "<group>"; };
+		9DC5654B1E8D30AF00D31C76 /* Hoodie6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Hoodie6.jpg; sourceTree = "<group>"; };
 		9DD0DCCE1E766EF0003E224C /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		9DD0DCCF1E766EF0003E224C /* CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
 		9DD0DCD11E766EF0003E224C /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
@@ -138,78 +142,12 @@
 		9D2071ED1E82EB84003E25DB /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				9D2071EE1E82EB84003E25DB /* denims */,
-				9D2071F31E82EB84003E25DB /* pants */,
-				9D2071F91E82EB84003E25DB /* polos */,
-				9D2071FE1E82EB84003E25DB /* shirts */,
-				9D2072031E82EB84003E25DB /* track-wear */,
-				9D2072071E82EB84003E25DB /* vests */,
+				9DC565301E8D30AF00D31C76 /* Bindings */,
+				9DC565361E8D30AF00D31C76 /* Boots */,
+				9DC5653E1E8D30AF00D31C76 /* Gloves */,
+				9DC565451E8D30AF00D31C76 /* Hoodie */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		9D2071EE1E82EB84003E25DB /* denims */ = {
-			isa = PBXGroup;
-			children = (
-				9D2071EF1E82EB84003E25DB /* denims_1.jpeg */,
-				9D2071F01E82EB84003E25DB /* denims_2.jpeg */,
-				9D2071F11E82EB84003E25DB /* denims_3.jpeg */,
-				9D2071F21E82EB84003E25DB /* denims_4.jpeg */,
-			);
-			path = denims;
-			sourceTree = "<group>";
-		};
-		9D2071F31E82EB84003E25DB /* pants */ = {
-			isa = PBXGroup;
-			children = (
-				9D2071F41E82EB84003E25DB /* pants_1.jpeg */,
-				9D2071F51E82EB84003E25DB /* pants_2.jpeg */,
-				9D2071F61E82EB84003E25DB /* pants_3.jpeg */,
-				9D2071F71E82EB84003E25DB /* pants_4.jpeg */,
-				9D2071F81E82EB84003E25DB /* pants_5.jpeg */,
-			);
-			path = pants;
-			sourceTree = "<group>";
-		};
-		9D2071F91E82EB84003E25DB /* polos */ = {
-			isa = PBXGroup;
-			children = (
-				9D2071FA1E82EB84003E25DB /* polos_1.jpeg */,
-				9D2071FB1E82EB84003E25DB /* polos_2.jpeg */,
-				9D2071FC1E82EB84003E25DB /* polos_3.jpeg */,
-				9D2071FD1E82EB84003E25DB /* polos_4.jpeg */,
-			);
-			path = polos;
-			sourceTree = "<group>";
-		};
-		9D2071FE1E82EB84003E25DB /* shirts */ = {
-			isa = PBXGroup;
-			children = (
-				9D2071FF1E82EB84003E25DB /* shirts_1.jpeg */,
-				9D2072001E82EB84003E25DB /* shirts_2.jpeg */,
-				9D2072011E82EB84003E25DB /* shirts_3.jpeg */,
-				9D2072021E82EB84003E25DB /* shirts_4.jpeg */,
-			);
-			path = shirts;
-			sourceTree = "<group>";
-		};
-		9D2072031E82EB84003E25DB /* track-wear */ = {
-			isa = PBXGroup;
-			children = (
-				9D2072041E82EB84003E25DB /* track wear_1.jpeg */,
-				9D2072051E82EB84003E25DB /* track wear_2.jpeg */,
-				9D2072061E82EB84003E25DB /* track wear_3.jpeg */,
-			);
-			path = "track-wear";
-			sourceTree = "<group>";
-		};
-		9D2072071E82EB84003E25DB /* vests */ = {
-			isa = PBXGroup;
-			children = (
-				9D2072081E82EB84003E25DB /* vests_1.jpeg */,
-				9D2072091E82EB84003E25DB /* vests_2.jpeg */,
-			);
-			path = vests;
 			sourceTree = "<group>";
 		};
 		9D56EE951E6B2D5E008C3698 = {
@@ -274,6 +212,58 @@
 				9D56EEA31E6B2D5E008C3698 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		9DC565301E8D30AF00D31C76 /* Bindings */ = {
+			isa = PBXGroup;
+			children = (
+				9DC565311E8D30AF00D31C76 /* Bindings1.jpg */,
+				9DC565321E8D30AF00D31C76 /* Bindings2.jpg */,
+				9DC565331E8D30AF00D31C76 /* Bindings3.jpg */,
+				9DC565341E8D30AF00D31C76 /* Bindings4.jpg */,
+				9DC565351E8D30AF00D31C76 /* Bindings5.jpg */,
+			);
+			path = Bindings;
+			sourceTree = "<group>";
+		};
+		9DC565361E8D30AF00D31C76 /* Boots */ = {
+			isa = PBXGroup;
+			children = (
+				9DC565371E8D30AF00D31C76 /* Boots1.jpg */,
+				9DC565381E8D30AF00D31C76 /* Boots2.jpg */,
+				9DC565391E8D30AF00D31C76 /* Boots3.jpg */,
+				9DC5653A1E8D30AF00D31C76 /* Boots4.jpg */,
+				9DC5653B1E8D30AF00D31C76 /* Boots5.jpg */,
+				9DC5653C1E8D30AF00D31C76 /* Boots6.jpg */,
+				9DC5653D1E8D30AF00D31C76 /* Boots7.jpg */,
+			);
+			path = Boots;
+			sourceTree = "<group>";
+		};
+		9DC5653E1E8D30AF00D31C76 /* Gloves */ = {
+			isa = PBXGroup;
+			children = (
+				9DC5653F1E8D30AF00D31C76 /* Gloves1.jpg */,
+				9DC565401E8D30AF00D31C76 /* Gloves2.jpg */,
+				9DC565411E8D30AF00D31C76 /* Gloves3.jpg */,
+				9DC565421E8D30AF00D31C76 /* Gloves4.jpg */,
+				9DC565431E8D30AF00D31C76 /* Gloves5.jpg */,
+				9DC565441E8D30AF00D31C76 /* Gloves6.jpg */,
+			);
+			path = Gloves;
+			sourceTree = "<group>";
+		};
+		9DC565451E8D30AF00D31C76 /* Hoodie */ = {
+			isa = PBXGroup;
+			children = (
+				9DC565461E8D30AF00D31C76 /* Hoodie1.jpg */,
+				9DC565471E8D30AF00D31C76 /* Hoodie2.jpg */,
+				9DC565481E8D30AF00D31C76 /* Hoodie3.jpg */,
+				9DC565491E8D30AF00D31C76 /* Hoodie4.jpg */,
+				9DC5654A1E8D30AF00D31C76 /* Hoodie5.jpg */,
+				9DC5654B1E8D30AF00D31C76 /* Hoodie6.jpg */,
+			);
+			path = Hoodie;
 			sourceTree = "<group>";
 		};
 		9DD0DCCD1E766EF0003E224C /* CollectionCell */ = {
@@ -416,31 +406,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D56EEBB1E6B2D82008C3698 /* LaunchScreen.storyboard in Resources */,
-				9D20720A1E82EB84003E25DB /* denims_1.jpeg in Resources */,
-				9D20720C1E82EB84003E25DB /* denims_3.jpeg in Resources */,
-				9D20721E1E82EB84003E25DB /* vests_1.jpeg in Resources */,
-				9D2072131E82EB84003E25DB /* polos_1.jpeg in Resources */,
-				9D2072171E82EB84003E25DB /* shirts_1.jpeg in Resources */,
-				9D2072101E82EB84003E25DB /* pants_3.jpeg in Resources */,
-				9D20720B1E82EB84003E25DB /* denims_2.jpeg in Resources */,
-				9D2072121E82EB84003E25DB /* pants_5.jpeg in Resources */,
-				9D2072111E82EB84003E25DB /* pants_4.jpeg in Resources */,
-				9D20720D1E82EB84003E25DB /* denims_4.jpeg in Resources */,
-				9D20720E1E82EB84003E25DB /* pants_1.jpeg in Resources */,
-				9D20721D1E82EB84003E25DB /* track wear_3.jpeg in Resources */,
 				9D56EEB81E6B2D82008C3698 /* Assets.xcassets in Resources */,
-				9D2072141E82EB84003E25DB /* polos_2.jpeg in Resources */,
-				9D20721B1E82EB84003E25DB /* track wear_1.jpeg in Resources */,
-				9D20721C1E82EB84003E25DB /* track wear_2.jpeg in Resources */,
-				9D20720F1E82EB84003E25DB /* pants_2.jpeg in Resources */,
+				9DC565601E8D30AF00D31C76 /* Hoodie3.jpg in Resources */,
+				9DC5654C1E8D30AF00D31C76 /* Bindings1.jpg in Resources */,
+				9DC565561E8D30AF00D31C76 /* Boots6.jpg in Resources */,
+				9DC5655F1E8D30AF00D31C76 /* Hoodie2.jpg in Resources */,
+				9DC565611E8D30AF00D31C76 /* Hoodie4.jpg in Resources */,
+				9DC565541E8D30AF00D31C76 /* Boots4.jpg in Resources */,
+				9DC565531E8D30AF00D31C76 /* Boots3.jpg in Resources */,
+				9DC565591E8D30AF00D31C76 /* Gloves2.jpg in Resources */,
+				9DC565511E8D30AF00D31C76 /* Boots1.jpg in Resources */,
+				9DC565571E8D30AF00D31C76 /* Boots7.jpg in Resources */,
 				9D56EEB61E6B2D82008C3698 /* Main.storyboard in Resources */,
+				9DC5654D1E8D30AF00D31C76 /* Bindings2.jpg in Resources */,
+				9DC565521E8D30AF00D31C76 /* Boots2.jpg in Resources */,
+				9DC5654E1E8D30AF00D31C76 /* Bindings3.jpg in Resources */,
+				9DC565631E8D30AF00D31C76 /* Hoodie6.jpg in Resources */,
+				9DC5655E1E8D30AF00D31C76 /* Hoodie1.jpg in Resources */,
+				9DC565581E8D30AF00D31C76 /* Gloves1.jpg in Resources */,
+				9DC5655B1E8D30AF00D31C76 /* Gloves4.jpg in Resources */,
+				9DC565621E8D30AF00D31C76 /* Hoodie5.jpg in Resources */,
+				9DC5655C1E8D30AF00D31C76 /* Gloves5.jpg in Resources */,
+				9DC5655D1E8D30AF00D31C76 /* Gloves6.jpg in Resources */,
+				9DC5654F1E8D30AF00D31C76 /* Bindings4.jpg in Resources */,
+				9DC5655A1E8D30AF00D31C76 /* Gloves3.jpg in Resources */,
+				9DC565501E8D30AF00D31C76 /* Bindings5.jpg in Resources */,
 				9DD0DCF21E766EF0003E224C /* CollectionCell.xib in Resources */,
-				9D20721F1E82EB84003E25DB /* vests_2.jpeg in Resources */,
-				9D2072191E82EB84003E25DB /* shirts_3.jpeg in Resources */,
-				9D2072181E82EB84003E25DB /* shirts_2.jpeg in Resources */,
-				9D2072161E82EB84003E25DB /* polos_4.jpeg in Resources */,
-				9D20721A1E82EB84003E25DB /* shirts_4.jpeg in Resources */,
-				9D2072151E82EB84003E25DB /* polos_3.jpeg in Resources */,
+				9DC565551E8D30AF00D31C76 /* Boots5.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

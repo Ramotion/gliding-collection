@@ -14,7 +14,7 @@ class ViewController: UIViewController {
   
   @IBOutlet var glidingView: GlidingCollection!
   fileprivate var collectionView: UICollectionView!
-  fileprivate var items = ["shirts", "pants", "vests", "denims", "polos", "track wear"]
+  fileprivate var items = ["gloves", "boots", "bindings", "hoodie"]
   fileprivate var images: [[UIImage?]] = []
   
   override func viewDidLoad() {
