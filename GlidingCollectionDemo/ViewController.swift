@@ -50,7 +50,7 @@ extension ViewController {
   
   private func loadImages() {
     for item in items {
-      let imageURLs = FileManager.default.fileUrls(for: "jpg", "jpeg", fileName: item)
+      let imageURLs = FileManager.default.fileUrls(for: "jpeg", fileName: item)
       var images: [UIImage?] = []
       for url in imageURLs {
         guard let data = try? Data(contentsOf: url) else { continue }
@@ -84,6 +84,9 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     layer.shadowColor = config.cardShadowColor.cgColor
     layer.shadowOpacity = config.cardShadowOpacity
     layer.shadowRadius = config.cardShadowRadius
+    
+    layer.shouldRasterize = true
+    layer.rasterizationScale = UIScreen.main.scale
     
     return cell
   }
