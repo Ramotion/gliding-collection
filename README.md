@@ -59,7 +59,7 @@ github "Ramotion/gliding-collection"
 import GlidingCollection
 
 class ViewController: UIViewController {
-  let items = ["shirts", "pants", "vests"]
+  let items = ["gloves", "boots", "bindings", "hoodie"]
 }
 ```
 
