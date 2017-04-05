@@ -53,7 +53,7 @@ github "Ramotion/gliding-collection"
 
 ## How to use
 
-• Create some view controller class:
+• Create a view controller class:
 
 ```swift
 import GlidingCollection
@@ -63,17 +63,17 @@ class ViewController: UIViewController {
 }
 ```
 
-• Drag `UIView` onto the canvas, change it's class to `GlidingCollection` and set autolayout constraints.
+• Drag a `UIView` onto the canvas. Change it's class to `GlidingCollection` and use autolayout constraints.
 
 ![step-2](/assets/step-2.png)
 
-• Connect this view to your view controller class as `@IBOutlet`.
+• Connect this view to your view controller class as an `@IBOutlet`.
 
 ```swift
 @IBOutlet var glidingCollection: GlidingCollection!
 ```
 
-• Make your view controller conformant to `GlidingCollectionDatasource`. It's very similar to `UITableView` or `UICollectionView` *datasource* protocols that you know:
+• Make your view controller conform to `GlidingCollectionDatasource`. It's very similar to the `UITableView` or `UICollectionView` *datasource* protocols that you know:
 
 ```swift
 extension ViewController: GlidingCollectionDatasource {
@@ -89,7 +89,7 @@ extension ViewController: GlidingCollectionDatasource {
 }
 ```
 
-• Make your view controller conformant to `UICollectionViewDatasource`:
+• Make your view controller conform to `UICollectionViewDatasource`:
 
 ```swift
 extension ViewController: UICollectionViewDatasource {
@@ -110,7 +110,7 @@ extension ViewController: UICollectionViewDatasource {
 
 ## Customize
 
-You can customize appearance of `GlidingCollection` by overriding `GlidingConfig`'s `shared` instance with your own one.
+You can customize the appearance of `GlidingCollection` by overriding `GlidingConfig`'s `shared` instance with your own.
 
 ```swift
 var config = GlidingConfig.shared
@@ -120,19 +120,19 @@ config.inactiveButtonsColor = .lightGray
 GlidingConfig.shared = config
 ```
 
->🗒 All parameters with their descriptions listed in [`GlidingConfig`](/GlidingCollection/GlidingConfig.swift) file.
+>🗒 All parameters with their descriptions are listed in [`GlidingConfig`](/GlidingCollection/GlidingConfig.swift).
 
 <br>
 
 ## Notes
 
-There are [`GlidingCollectionDelegate`](/GlidingCollection/Protocols/GlidingCollectionDelegate.swift) protocol which can you notify when *item* in `GlidingCollection` `didSelect`, `willExpand` and `didExpand`.
+There is a [`GlidingCollectionDelegate`](/GlidingCollection/Protocols/GlidingCollectionDelegate.swift) protocol which can notify you when *item* in `GlidingCollection` `didSelect`, `willExpand` and `didExpand`.
 
-If you want to achieve parallax effect on horizontal cards stack, you need to place your `parallax view` in cell's `contentView` and set it's `tag` to `99`.
+If you want to achieve a parallax effect on a horizontal cards stack, you need to place your `parallax view` in a cell's `contentView` and set its `tag` to `99`.
 
 ![parallax-view](/assets/parallax-view.png)
 
-There is `kGlidingCollectionParallaxViewTag` constant if you layout a cell in code.
+There is a `kGlidingCollectionParallaxViewTag` constant if you want to layout a cell in code.
 ```swift
 imageView.tag = kGlidingCollectionParallaxViewTag
 ```
