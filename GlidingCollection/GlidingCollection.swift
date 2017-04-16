@@ -189,7 +189,7 @@ fileprivate extension GlidingCollection {
       containerView.insertSubview(button, at: 0)
       button.addTarget(self, action: #selector(didTapped(_:)), for: .touchUpInside)
     }
-    
+
   }
 
   private func setupGradientOverlays() {
@@ -495,6 +495,17 @@ extension GlidingCollection {
   /// Expand previous item in list
   public func expandPrevious() {
     expand(at: expandedItemIndex - 1)
+  }
+  
+  public func reloadData() {
+    for button in topViews + bottomViews {
+      button.removeFromSuperview()
+    }
+    topViews = []
+    bottomViews = []
+    setupVerticalStack()
+    setNeedsLayout()
+    layoutIfNeeded()
   }
   
   // MARK: Private
