@@ -33,11 +33,6 @@ extension ViewController {
   }
   
   private func setupGlidingCollectionView() {
-    var config = GlidingConfig.shared
-    config.buttonsFont = UIFont.boldSystemFont(ofSize: 22)
-    config.inactiveButtonsColor = config.activeButtonColor
-    GlidingConfig.shared = config
-    
     glidingView.dataSource = self
     
     let nib = UINib(nibName: "CollectionCell", bundle: nil)
