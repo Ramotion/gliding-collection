@@ -73,10 +73,10 @@ class ViewController: UIViewController {
 @IBOutlet var glidingCollection: GlidingCollection!
 ```
 
-• Make your view controller conform to `GlidingCollectionDatasource`. It's very similar to the `UITableView` or `UICollectionView` *datasource* protocols that you know:
+• Make your view controller conform to `GlidingCollectionDataSource`. It's very similar to the `UITableView` or `UICollectionView` *datasource* protocols that you know:
 
 ```swift
-extension ViewController: GlidingCollectionDatasource {
+extension ViewController: GlidingCollectionDataSource {
 
   func numberOfItems(in collection: GlidingCollection) -> Int {
     return items.count
@@ -89,10 +89,10 @@ extension ViewController: GlidingCollectionDatasource {
 }
 ```
 
-• Make your view controller conform to `UICollectionViewDatasource`:
+• Make your view controller conform to `UICollectionViewDataSource`:
 
 ```swift
-extension ViewController: UICollectionViewDatasource {
+extension ViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     let section = glidingView.expandedItemIndex // Value of expanded section.
