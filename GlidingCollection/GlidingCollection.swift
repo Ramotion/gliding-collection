@@ -66,7 +66,7 @@ public class GlidingCollection: UIView {
   // MARK: Snapshots
   fileprivate var newRightSideSnapshot: UIView?
   
-  // MARK: Constructor
+  // MARK: Constructor 🏗
   /// :nodoc:
   override public init(frame: CGRect) {
     super.init(frame: frame)

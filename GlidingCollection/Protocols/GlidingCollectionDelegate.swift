@@ -36,3 +36,14 @@ public protocol GlidingCollectionDelegate {
   func glidingCollection(_ collection: GlidingCollection, didSelectItemAt index: Int)
   
 }
+
+// This extension will make all this methods optional so you can implement just part of this protocol if you wish.
+public extension GlidingCollectionDelegate {
+  
+  func glidingCollection(_ collection: GlidingCollection, willExpandItemAt index: Int) { }
+  
+  func glidingCollection(_ collection: GlidingCollection, didExpandItemAt index: Int) { }
+  
+  func glidingCollection(_ collection: GlidingCollection, didSelectItemAt index: Int) { }
+  
+}
