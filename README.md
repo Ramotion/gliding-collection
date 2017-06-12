@@ -3,7 +3,7 @@
 [![Twitter](https://img.shields.io/badge/Twitter-@Ramotion-blue.svg?style=flat)](http://twitter.com/Ramotion)
 [![PodPlatform](https://img.shields.io/cocoapods/p/GlidingCollection.svg)](https://cocoapods.org/pods/GlidingCollection)
 [![PodVersion](https://img.shields.io/cocoapods/v/GlidingCollection.svg)](http://cocoapods.org/pods/GlidingCollection)
-[![Documentation](https://img.shields.io/cocoapods/metrics/doc-percent/GlidingCollection.svg)](https://cdn.rawgit.com/Ramotion/gliding-collection/master/docs/index.html)
+[![Documentation](https://cdn.rawgit.com/Ramotion/gliding-collection/master/docs/badge.svg)](https://cdn.rawgit.com/Ramotion/gliding-collection/master/docs/index.html)
 
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Ramotion/gliding-collection)
 [![Codebeat](https://codebeat.co/badges/6a009992-5bf2-4730-aa35-f3b20ce7693d)](https://codebeat.co/projects/github-com-ramotion-gliding-collection)
