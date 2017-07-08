@@ -386,9 +386,7 @@ extension GlidingCollection {
     if let path = paths[safe: 1], let cell = collectionView.cellForItem(at: path) {
       if let attributes = collectionView.collectionViewLayout.layoutAttributesForElements(in: cell.frame),
         let targetAttributes = attributes.filter({ $0.indexPath == path }).first,
-        let _ = collectionView.cellForItem(at: targetAttributes.indexPath) {
-//        cell.contentView.transform = c.contentView.transform
-      }
+        let _ = collectionView.cellForItem(at: targetAttributes.indexPath) { }
       
       UIGraphicsBeginImageContextWithOptions(cell.bounds.size, true, 0)
       if let context = UIGraphicsGetCurrentContext() {
