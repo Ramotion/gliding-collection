@@ -14,7 +14,7 @@ protocol GlidingLayoutDelegate {
   func collectionViewDidScroll()
 }
 
-class GlidingLayout: UICollectionViewFlowLayout {
+final class GlidingLayout: UICollectionViewFlowLayout {
   
   var delegate: GlidingLayoutDelegate?
   

@@ -13,7 +13,7 @@ public let kGlidingCollectionParallaxViewTag = 99
 
 /// GlidingCollection control.
 /// Add as subview to your view and implement `dataSource` protocol.
-public class GlidingCollection: UIView {
+public final class GlidingCollection: UIView {
   
   /// Delegate protocol.
   public var delegate: GlidingCollectionDelegate?
