@@ -277,6 +277,12 @@ extension GlidingCollection {
     let newCellSnapshotView = UIImageView()
     let newRightSideSnapshotView = UIImageView()
     
+    containerView.addSubview(oldCellSnapshotView)
+    containerView.addSubview(oldRightSideSnapshotView)
+    containerView.addSubview(newCellShadowView)
+    containerView.addSubview(newCellWrapperView)
+    containerView.addSubview(newRightSideSnapshotView)
+    
     let unified = topViews + bottomViews
     let movingItem = unified[safe: index]
     topViews = Array(unified.prefix(through: index))
@@ -312,7 +318,7 @@ extension GlidingCollection {
         cell.layer.render(in: context)
       }
       oldCellSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
-      containerView.addSubview(oldCellSnapshotView)
+      
       oldCellSnapshotView.frame = oldCellFrame
       UIGraphicsEndImageContext()
       oldCellSnapshotView.tag = AnimationItem.oldCell.tag
@@ -327,7 +333,6 @@ extension GlidingCollection {
       }
       oldRightSideSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
-      containerView.addSubview(oldRightSideSnapshotView)
       oldRightSideSnapshotView.frame = CGRect(x: oldCellFrame.maxX + space, y: cellFrame.minY, width: cellFrame.width, height: cellFrame.height)
       oldRightSideSnapshotView.tag = AnimationItem.oldRightSide.tag
       setShadow(to: oldRightSideSnapshotView)
@@ -363,8 +368,6 @@ extension GlidingCollection {
       newCellWrapperView.addSubview(newCellSnapshotView)
       newCellWrapperView.clipsToBounds = true
       newCellWrapperView.isUserInteractionEnabled = false
-      containerView.addSubview(newCellShadowView)
-      containerView.addSubview(newCellWrapperView)
       
       let imageViewOriginY = up ? -cellFrame.height : 0
       newCellSnapshotView.frame = CGRect(x: 0, y: imageViewOriginY, width: cellFrame.width, height: cellFrame.height)
@@ -393,7 +396,6 @@ extension GlidingCollection {
       }
       newRightSideSnapshotView.image = UIGraphicsGetImageFromCurrentImageContext()
       UIGraphicsEndImageContext()
-      containerView.addSubview(newRightSideSnapshotView)
       newRightSideSnapshotView.frame = CGRect(x: bounds.maxX, y: cellFrame.minY, width: cell.bounds.width, height: cell.bounds.height)
       newRightSideSnapshotView.tag = AnimationItem.newRightSide.tag
       setShadow(to: newRightSideSnapshotView)
