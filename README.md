@@ -1,30 +1,22 @@
-[![header](/assets/header.png)](https://ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection-logo)
+[![header](./assets/header.png)](https://ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection-logo)
+[![animation](./assets/preview.gif)](https://dribbble.com/shots/3413329-iOS-Gliding-Collection-Open-Source)
 
+# Gliding-collection
 [![Twitter](https://img.shields.io/badge/Twitter-@Ramotion-blue.svg?style=flat)](http://twitter.com/Ramotion)
 [![PodPlatform](https://img.shields.io/cocoapods/p/GlidingCollection.svg)](https://cocoapods.org/pods/GlidingCollection)
 [![PodVersion](https://img.shields.io/cocoapods/v/GlidingCollection.svg)](http://cocoapods.org/pods/GlidingCollection)
 [![Documentation](https://cdn.rawgit.com/Ramotion/gliding-collection/master/docs/badge.svg)](https://cdn.rawgit.com/Ramotion/gliding-collection/master/docs/index.html)
-
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Ramotion/gliding-collection)
 [![Codebeat](https://codebeat.co/badges/6a009992-5bf2-4730-aa35-f3b20ce7693d)](https://codebeat.co/projects/github-com-ramotion-gliding-collection)
 ![Swift](https://img.shields.io/badge/Swift-3.1-2ecc71.svg)
 
-<br>
+Gliding Collection is a smooth, flowing, customizable decision for a UICollectionView Swift Controller https://ramotion.com/gthb (The [iPhone mockup](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection) available [here](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection)).<br>
 
-## About
-This project is maintained by Ramotion, Inc.<br>
-We specialize in the designing and coding of custom UI for Mobile Apps and Websites.<br><br>**Looking for developers for your project?**
+**Looking for developers for your project?**<br>
+This project is maintained by Ramotion, Inc. We specialize in the designing and coding of custom UI for Mobile Apps and Websites.
 
-<a href="https://ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection-contact-us/#Get_in_Touch" > <img src="https://github.com/Ramotion/navigation-stack/raw/master/contact_our_team@2x.png" width="150" height="30"></a>
-
-[![animation](/assets/preview.gif)](https://dribbble.com/shots/3413329-iOS-Gliding-Collection-Open-Source)
-
-The [iPhone mockup](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection) available [here](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection).
-<br>
-
-## Try this UI control in action
-
-<a href="https://itunes.apple.com/app/apple-store/id1182360240?pt=550053&ct=gliding-collection&mt=8" > <img src="https://github.com/Ramotion/navigation-stack/raw/master/Download_on_the_App_Store_Badge_US-UK_135x40.png" width="170" height="58"></a>
+<a href="https://ramotion.com/?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection-contact-us/#Get_in_Touch"> 
+<img src="./contact_our_team@2x.png" width="187" height="34"></a> <br>
 
 ## Requirements
 
@@ -69,7 +61,7 @@ class ViewController: UIViewController {
 
 • Drag a `UIView` onto the canvas. Change it's class to `GlidingCollection` and use autolayout constraints.
 
-![step-2](/assets/step-2.png)
+![step-2](./assets/step-2.png)
 
 • Connect this view to your view controller class as an `@IBOutlet`.
 
@@ -134,7 +126,7 @@ There is a [`GlidingCollectionDelegate`](/GlidingCollection/Protocols/GlidingCol
 
 If you want to achieve a parallax effect on a horizontal cards stack, you need to place your `parallax view` in a cell's `contentView` and set its `tag` to `99`.
 
-![parallax-view](/assets/parallax-view.png)
+![parallax-view](./assets/parallax-view.png)
 
 There is a `kGlidingCollectionParallaxViewTag` constant if you want to layout a cell in code.
 ```swift
@@ -150,7 +142,17 @@ See [LICENSE](./LICENSE) for details.
 
 <br>
 
-## Follow us
+# Get the Showroom App for iOS to give it a try
+Try this UI component and more like this in our iOS app. Contact us if interested.
 
-[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=https://github.com/ramotion/gliding-collection)
+<a href="https://itunes.apple.com/app/apple-store/id1182360240?pt=550053&ct=gliding-collection&mt=8" > 
+<img src="./app_store@2x.png" width="117" height="34"></a>
+
+<a href="https://ramotion.com/?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection-contact-us/#Get_in_Touch"> 
+<img src="./contact_our_team@2x.png" width="187" height="34"></a>
+<br>
+<br>
+
+Follow us for the latest updates<br>
+[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=https://github.com/ramotion/foolding-cell-android)
 [![Twitter Follow](https://img.shields.io/twitter/follow/ramotion.svg?style=social)](https://twitter.com/ramotion)
