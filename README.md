@@ -22,7 +22,8 @@ This project is maintained by Ramotion, Inc. We specialize in the designing and 
 
 - iOS 8.0+
 - Xcode 8
-- Swift 3
+- Swift 3 (<= 1.0.3)
+- Swift 4 (>= 1.1.0)
 
 <br>
 
