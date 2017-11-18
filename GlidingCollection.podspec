@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'GlidingCollection'
-  s.version      = '1.0.3'
+  s.version      = '1.1.0'
   s.summary      = 'GlidingCollection'
   s.license      = 'MIT'
   s.homepage     = 'https://github.com/Ramotion/gliding-collection'

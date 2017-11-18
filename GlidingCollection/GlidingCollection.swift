@@ -663,7 +663,7 @@ extension GlidingCollection: CAAnimationDelegate {
         collectionView.isUserInteractionEnabled = true
         
       case .newCell where index == expandedItemIndex && aniview.animation.beginTime == anim.beginTime:
-        let paths = collectionView.indexPathsForVisibleItems.sorted { $0.0.item < $0.1.item }
+        let paths = collectionView.indexPathsForVisibleItems.sorted { $0.item < $1.item }
         guard let path = paths.first, let cell = collectionView.cellForItem(at: path) else {
           break
         }
