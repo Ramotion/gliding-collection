@@ -1,5 +1,6 @@
 [![header](./assets/header.png)](https://ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection-logo)
-[![animation](./assets/preview.gif)](https://dribbble.com/shots/3413329-iOS-Gliding-Collection-Open-Source)
+<img src="https://github.com/Ramotion/gliding-collection/blob/master/assets/gliding-collection.gif" width="600" height="450" />
+<br><br/>
 
 # Gliding-collection
 [![Twitter](https://img.shields.io/badge/Twitter-@Ramotion-blue.svg?style=flat)](http://twitter.com/Ramotion)
