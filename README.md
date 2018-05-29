@@ -12,7 +12,7 @@
 ![Swift](https://img.shields.io/badge/Swift-3.1-2ecc71.svg)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://paypal.me/Ramotion)
 
-Gliding Collection is a smooth, flowing, customizable decision for a UICollectionView Swift Controller https://ramotion.com/gthb (The [iPhone mockup](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection) available [here](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection)).<br>
+Gliding Collection is a smooth, flowing, customizable decision for a UICollectionView Swift Controller 
 
 **Looking for developers for your project?**<br>
 This project is maintained by Ramotion, Inc. We specialize in the designing and coding of custom UI for Mobile Apps and Websites.
