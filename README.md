@@ -20,6 +20,8 @@ This project is maintained by Ramotion, Inc. We specialize in the designing and 
 <a href="https://dev.ramotion.com/?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection-contact-us"> 
 <img src="./contact_our_team@2x.png" width="187" height="34"></a> <br>
 
+The [iPhone mockup](https://store.ramotion.com/product/iphone-x-clay-mockups?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection) available [here](https://store.ramotion.com?utm_source=gthb&utm_medium=special&utm_campaign=gliding-collection).
+
 ## Requirements
 
 - iOS 8.0+
