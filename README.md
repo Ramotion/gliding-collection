@@ -138,7 +138,8 @@ There is a `kGlidingCollectionParallaxViewTag` constant if you want to layout a 
 imageView.tag = kGlidingCollectionParallaxViewTag
 ```
 
-<br>
+
+This library is a part of a <a href="https://github.com/Ramotion/swift-ui-animation-components-and-libraries"><b>selection of our best UI open-source projects.</b></a>
 
 ## License
 
