@@ -342,7 +342,7 @@ extension GlidingCollection {
     collectionView.collectionViewLayout.invalidateLayout()
     if collectionView.numberOfItems(inSection: 0) > 0 {
       let path = IndexPath(item: 0, section: 0)
-      collectionView.scrollToItem(at: path, at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+      collectionView.scrollToItem(at: path, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
     }
     collectionView.reloadData()
     collectionView.layoutIfNeeded()
@@ -424,27 +424,27 @@ extension GlidingCollection {
     }, completion: nil)
     
     if up, let movingButton = unified[safe: index], abs(oldIndex - index) <= 1 {
-      UIView.animate(withDuration: duration, delay: duration/3, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+      UIView.animate(withDuration: duration, delay: duration/3, options: UIView.AnimationOptions.curveEaseInOut, animations: {
         if up {
           let insets = self.config.sideInsets
           movingButton.frame = CGRect(x: insets.left, y: self.collectionView.frame.minY - 40, width: bounds.width - insets.left - insets.right, height: 30)
         }
       }, completion: nil)
       
-      UIView.animate(withDuration: duration, delay: duration/2, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+      UIView.animate(withDuration: duration, delay: duration/2, options: UIView.AnimationOptions.curveEaseInOut, animations: {
         self.animateTopButtons()
       }, completion: nil)
     } else {
-      UIView.animate(withDuration: duration, delay: duration/4, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+      UIView.animate(withDuration: duration, delay: duration/4, options: UIView.AnimationOptions.curveEaseInOut, animations: {
         up ? self.animateTopButtons() : self.animateBottomButtons()
       }, completion: nil)
     }
     
     // MARK: Animate buttons textColor
     for button in unified {
-      UIView.transition(with: button, duration: duration/2, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+      UIView.transition(with: button, duration: duration/2, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
         let color = button === movingItem ? self.config.activeButtonColor : self.config.inactiveButtonsColor
-        button.setTitleColor(color, for: UIControlState.normal)
+        button.setTitleColor(color, for: UIControl.State.normal)
       }, completion: nil)
     }
     
@@ -631,8 +631,8 @@ extension GlidingCollection: CAAnimationDelegate {
     }
     
     animation.isRemovedOnCompletion = false
-    animation.fillMode = kCAFillModeBackwards
-    animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+    animation.fillMode = CAMediaTimingFillMode.backwards
+    animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
     animation.duration = duration ?? config.animationDuration
     animation.delegate = self
     animation.beginTime = CACurrentMediaTime() + delay
