@@ -164,7 +164,7 @@ fileprivate extension GlidingCollection {
     collectionView.collectionViewLayout.invalidateLayout()
   }
   
-  fileprivate func setupVerticalStack() {
+    func setupVerticalStack() {
     guard
       let source = dataSource,
       source.numberOfItems(in: self) > 0 else {
@@ -205,7 +205,7 @@ fileprivate extension GlidingCollection {
     addGestureRecognizer(gesture)
   }
   
-  fileprivate func setShadow(to view: UIView) {
+  func setShadow(to view: UIView) {
     view.clipsToBounds = false
     let layer = view.layer
     layer.shadowOffset = config.cardShadowOffset
@@ -511,7 +511,7 @@ extension GlidingCollection {
   // MARK: Private
   @objc fileprivate func didTapped(_ button: UIButton) {
     let unifiedButtons = topViews + bottomViews
-    guard let index = unifiedButtons.index(of: button) else { return }
+    guard let index = unifiedButtons.firstIndex(of: button) else { return }
     delegate?.glidingCollection(self, didSelectItemAt: index)
     expand(at: index)
   }
